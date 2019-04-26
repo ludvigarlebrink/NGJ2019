@@ -1124,3 +1124,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 30
+  cameraSmoothSpeed: 0.075
+  cameraOffset: {x: 0, y: 1, z: -2}

@@ -12,15 +12,17 @@ public class Egg : MonoBehaviour
     public float Damper = 2.0f;
     public float Spring = 10.0f;
 
-    // Start is called before the first frame update
+    private Animator animator;
+    private Rigidbody rb;
+
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        animator.SetFloat("Speed", rb.velocity.sqrMagnitude);
     }
 }
