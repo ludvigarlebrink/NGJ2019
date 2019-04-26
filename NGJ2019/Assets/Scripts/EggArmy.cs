@@ -7,7 +7,8 @@ public class EggArmy : MonoBehaviour
     public GameObject SpeederEgg;
     public GameObject LeaderEgg;
     public Egg[,] Eggs;
-    private const int maxSize = 5;
+    private const int maxSize = 7;
+    private int currentCount = 0;
     public float Density = 1;
 
     public enum ConnectionType
@@ -22,6 +23,7 @@ public class EggArmy : MonoBehaviour
     void Start()
     {
         Eggs = new Egg[maxSize, maxSize];
+        currentCount = maxSize * maxSize;
         for (int w = 0; w < maxSize; ++w)
         {
             for (int l = 0; l < maxSize; ++l)
@@ -29,6 +31,7 @@ public class EggArmy : MonoBehaviour
                 if (l == Mathf.Floor(maxSize / 2) && w == Mathf.Floor(maxSize / 2))
                 {
                     Eggs[w, l] = Instantiate(LeaderEgg, new Vector3(w * Density, 0, l * Density), Quaternion.identity, transform).GetComponent<Egg>();
+                    Eggs[w, l].GetComponent<Leader>().SpeedModifier = 1 + currentCount * 1.16f;
                 }
                 else
                 {
@@ -180,9 +183,9 @@ public class EggArmy : MonoBehaviour
         springJoint.damper = (egg1.Damper + egg2.Damper) / 2.0f;
         springJoint.spring = (egg1.Spring + egg2.Spring) / 2.0f;
         springJoint.enableCollision = true;
-        springJoint.maxDistance = 0.002f;
-        springJoint.minDistance = 0.0f;
-        springJoint.tolerance = 0.1f;
+        springJoint.maxDistance = 0.02f;
+        springJoint.minDistance = 0.005f;
+        springJoint.tolerance = 0.0f;
         springJoint.enablePreprocessing = false;
     }
 

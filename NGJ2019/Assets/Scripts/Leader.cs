@@ -5,6 +5,7 @@ using UnityEngine;
 public class Leader : MonoBehaviour
 {
     public float Speed = 0.125f;
+    public float SpeedModifier = 1.0f;
 
     Rigidbody rb = null;
 
@@ -26,8 +27,8 @@ public class Leader : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.AddForce(0.0f, 0.0f, Speed * Input.GetAxis("Vertical"));
-        rb.AddForce(Speed * Input.GetAxis("Horizontal"), 0.0f, 0.0f);
+        rb.AddForce(0.0f, 0.0f, Speed * Input.GetAxis("Vertical") * SpeedModifier);
+        rb.AddForce(Speed * Input.GetAxis("Horizontal") * SpeedModifier, 0.0f, 0.0f);
     }
 
     private void LateUpdate()
