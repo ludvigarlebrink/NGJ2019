@@ -65,7 +65,7 @@ public class EggArmy : MonoBehaviour
                                 if (Eggs[w, l0])
                                 {
                                     Vector3 tmpPosition = Eggs[w, l0].transform.position;
-                                    Eggs[w, l0].transform.position = Eggs[w, l].transform.position + new Vector3(0, Density, 0);
+                                    Eggs[w, l0].transform.position = Eggs[w, l].transform.position + new Vector3(0, 0, Density);
                                     MakeJoint(Eggs[w, l], Eggs[w, l0]);
                                     Eggs[w, l0].transform.position = tmpPosition;
                                     break;
@@ -87,7 +87,7 @@ public class EggArmy : MonoBehaviour
                                         if (Eggs[w0, l0])
                                         {
                                             tmpPosition = Eggs[w0, l0].transform.position;
-                                            Eggs[w0, l0].transform.position = Eggs[w, l].transform.position + new Vector3(0, Density, 0);
+                                            Eggs[w0, l0].transform.position = Eggs[w, l].transform.position + new Vector3(Density, 0, Density);
                                             MakeJoint(Eggs[w, l], Eggs[w0, l0]);
                                             Eggs[w0, l0].transform.position = tmpPosition;
                                             break;
@@ -101,7 +101,7 @@ public class EggArmy : MonoBehaviour
                                 if (Eggs[w, l0])
                                 {
                                     Vector3 tmpPosition = Eggs[w, l0].transform.position;
-                                    Eggs[w, l0].transform.position = Eggs[w, l].transform.position + new Vector3(0, Density, 0);
+                                    Eggs[w, l0].transform.position = Eggs[w, l].transform.position + new Vector3(0, 0, Density);
                                     MakeJoint(Eggs[w, l], Eggs[w, l0]);
                                     Eggs[w, l0].transform.position = tmpPosition;
                                     for (int w0 = l - 1; w0 > 0; --w0)
@@ -109,7 +109,7 @@ public class EggArmy : MonoBehaviour
                                         if (Eggs[w0, l0])
                                         {
                                             tmpPosition = Eggs[w0, l0].transform.position;
-                                            Eggs[w0, l0].transform.position = Eggs[w, l].transform.position + new Vector3(0, Density, 0);
+                                            Eggs[w0, l0].transform.position = Eggs[w, l].transform.position + new Vector3(-Density, 0, Density);
                                             MakeJoint(Eggs[w, l], Eggs[w0, l0]);
                                             Eggs[w0, l0].transform.position = tmpPosition;
                                             break;
@@ -182,17 +182,17 @@ public class EggArmy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             BreakJoints();
             ConnectJoints(ConnectionType.Grid);
         }
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             BreakJoints();
             ConnectJoints(ConnectionType.Snake);
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             BreakJoints();
             ConnectJoints(ConnectionType.XGrid);
