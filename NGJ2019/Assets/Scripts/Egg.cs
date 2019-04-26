@@ -23,6 +23,6 @@ public class Egg : MonoBehaviour
 
     void FixedUpdate()
     {
-        animator.SetFloat("Speed", rb.velocity.sqrMagnitude);
+        animator.SetFloat("Speed", new Vector2(rb.velocity.x, rb.velocity.z).sqrMagnitude);
     }
 }
