@@ -10,9 +10,15 @@ public class Leader : MonoBehaviour
 
     Rigidbody rb = null;
 
+    // Camera parameters
+    public float cameraSmoothSpeed;
+    public Vector3 cameraOffset;
+    private Camera MainCamera;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        MainCamera = Camera.main;
     }
 
     void Update()
@@ -34,5 +40,20 @@ public class Leader : MonoBehaviour
                 rb.AddExplosionForce(JumpForce, transform.position, JumpRadius);
             }
         }
+
+    }
+
+    private void LateUpdate()
+    {
+        CameraFollow();
+    }
+
+    private void CameraFollow()
+    {
+        Vector3 desiredPosition = transform.position + cameraOffset;
+        Vector3 smoothedPosition = Vector3.Lerp(MainCamera.transform.position, desiredPosition, cameraSmoothSpeed * Time.deltaTime * 60);
+
+        MainCamera.transform.position = smoothedPosition;
+        MainCamera.transform.LookAt(transform);
     }
 }
