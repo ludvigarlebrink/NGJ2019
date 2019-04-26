@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class EggArmy : MonoBehaviour
 {
-    public GameObject EggPrefab;
+    public GameObject SpeederEgg;
+    public GameObject LeaderEgg;
     public Egg[,] Eggs;
-    private const int maxSize = 4;
+    private const int maxSize = 5;
     public float Density = 1;
 
     // Start is called before the first frame update
@@ -17,7 +18,14 @@ public class EggArmy : MonoBehaviour
         {
             for (int l = 0; l < maxSize; ++l)
             {
-                Eggs[w, l] = Instantiate(EggPrefab, new Vector3(w * Density, 0, l * Density), Quaternion.identity, transform).GetComponent<Egg>();
+                if (l == Mathf.Floor(maxSize / 2) && w == Mathf.Floor(maxSize / 2))
+                {
+                    Eggs[w, l] = Instantiate(LeaderEgg, new Vector3(w * Density, 0, l * Density), Quaternion.identity, transform).GetComponent<Egg>();
+                }
+                else
+                {
+                    Eggs[w, l] = Instantiate(SpeederEgg, new Vector3(w * Density, 0, l * Density), Quaternion.identity, transform).GetComponent<Egg>();
+                }
             }
         }
         ConnectJoints();
