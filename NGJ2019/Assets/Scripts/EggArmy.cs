@@ -6,7 +6,7 @@ public class EggArmy : MonoBehaviour
 {
     public GameObject EggPrefab;
     public Egg[,] Eggs;
-    private const int maxSize = 16;
+    private const int maxSize = 4;
     public float Density = 1;
 
     // Start is called before the first frame update
@@ -40,7 +40,10 @@ public class EggArmy : MonoBehaviour
                             springJoint.damper = (Eggs[w, l].Damper + Eggs[w0, l].Damper) / 2.0f;
                             springJoint.spring = (Eggs[w, l].Spring + Eggs[w0, l].Spring) / 2.0f;
                             springJoint.enableCollision = true;
-                            springJoint.maxDistance = 2.0f;
+                            springJoint.maxDistance = Density;
+                            springJoint.minDistance = 0.0f;
+                            springJoint.tolerance = 0.1f;
+                            springJoint.enablePreprocessing = false;
                             break;
                         }
                     }
@@ -54,7 +57,10 @@ public class EggArmy : MonoBehaviour
                             springJoint.damper = (Eggs[w, l].Damper + Eggs[w, l0].Damper) / 2.0f;
                             springJoint.spring = (Eggs[w, l].Spring + Eggs[w, l0].Spring) / 2.0f;
                             springJoint.enableCollision = true;
-                            springJoint.maxDistance = 2.0f;
+                            springJoint.maxDistance = Density;
+                            springJoint.minDistance = 0.0f;
+                            springJoint.tolerance = 0.1f;
+                            springJoint.enablePreprocessing = false;
                             break;
                         }
                     }

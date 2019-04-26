@@ -133,5 +133,5 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  Damper: 500
-  Spring: 1000
+  Damper: 5000
+  Spring: 20000
