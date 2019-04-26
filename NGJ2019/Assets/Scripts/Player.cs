@@ -5,15 +5,16 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private bool isEggSelected = false;
-    private SpringJoint invisSpring = null;
+    private GameObject invisObject;
+    private SpringJoint invisSpring;
 
     void Start()
     {
-        GameObject invisObject = new GameObject();
+        invisObject = new GameObject();
         invisSpring = invisObject.AddComponent<SpringJoint>();
-        invisSpring.spring = 50.0f;
+        invisSpring.spring = 5.0f;
         invisSpring.damper = 0.2f;
-        invisSpring.maxDistance = 2.0f;
+        invisSpring.maxDistance = 0.02f;
     }
 
     void Update()
