@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Leader : MonoBehaviour
 {
-    public float Speed = 0.125f;
+    public float Speed = 10.0f;
     public float SpeedModifier = 1.0f;
+
+    public float JumpRadius = 15.0f;
+    public float JumpForce = 800.0f;
 
     Rigidbody rb = null;
 

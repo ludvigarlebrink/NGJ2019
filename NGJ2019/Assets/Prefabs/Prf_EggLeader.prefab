@@ -1105,7 +1105,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 0.2
   m_Drag: 1
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.15
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -1125,5 +1125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 1
   SpeedModifier: 1
+  JumpRadius: 100
+  JumpForce: 100
   cameraSmoothSpeed: 0.075
   cameraOffset: {x: 0, y: 1, z: -2}

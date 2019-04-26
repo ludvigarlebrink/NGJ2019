@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EggArmy : MonoBehaviour
 {
+    public float JumpForce = 50.0f;
     public GameObject SpeederEgg;
     public GameObject LeaderEgg;
     public Egg[,] Eggs;
@@ -228,6 +229,22 @@ public class EggArmy : MonoBehaviour
         {
             BreakJoints();
             ConnectJoints(ConnectionType.Dense);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        foreach (Egg e in Eggs)
+        {
+            RaycastHit hit;
+            LayerMask mask = LayerMask.GetMask("Ground");
+            if (Physics.Raycast(e.transform.position, Vector3.down, out hit, 0.4f, mask))
+            {
+                if (Input.GetButtonDown("Jump"))
+                {
+                    e.GetComponent<Rigidbody>().AddForce(Vector3.up * JumpForce);
+                }
+            }
         }
     }
 }

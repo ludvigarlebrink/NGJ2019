@@ -13,10 +13,10 @@ public class ScoreTextTestScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            GetComponent<Animation>().Play();
-            Debug.Log("Space pressed");
-        }
+        // if(Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     GetComponent<Animation>().Play();
+        //     Debug.Log("Space pressed");
+        // }
     }
 }
