@@ -41,7 +41,17 @@ public class InputComponent : MonoBehaviour
             eggIndex = 1;
         }
 
-        if(eggIndex >= 0)
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            eggIndex = 2;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            eggIndex = 3;
+        }
+
+        if (eggIndex >= 0)
         {
             score[eggIndex]++;
             eggsTexts[eggIndex].GetComponent<Animator>().SetTrigger("Active");
