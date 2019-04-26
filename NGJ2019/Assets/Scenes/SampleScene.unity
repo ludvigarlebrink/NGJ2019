@@ -699,7 +699,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b754f7b5433f5db43a0a4b3cbd2dd93e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EggPrefab: {fileID: 2081457659443787401, guid: fcedc9d065062bc4490fbd7466b1a2aa,
+  SpeederEgg: {fileID: 7587379312685690806, guid: 0cfa0d0d75ddc0b40a51a8244fef74d3,
+    type: 3}
+  LeaderEgg: {fileID: 5512020756333427668, guid: 484637dcdfe3b6645b44f70826954801,
     type: 3}
   Density: 0.22
 --- !u!4 &1965647342

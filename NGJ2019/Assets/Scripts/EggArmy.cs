@@ -14,7 +14,8 @@ public class EggArmy : MonoBehaviour
     {
         Grid,
         XGrid,
-        Snake
+        Snake,
+        Dense
     }
 
     // Start is called before the first frame update
@@ -140,6 +141,29 @@ public class EggArmy : MonoBehaviour
                             }
                             break;
 
+                        case ConnectionType.Dense:
+                            for (int w0 = w + 1; w0 < maxSize; ++w0)
+                            {
+                                if (Eggs[w0, l])
+                                {
+                                    Vector3 tmpPosition = Eggs[w0, l].transform.position;
+                                    Eggs[w0, l].transform.position = Eggs[w, l].transform.position + new Vector3(Density, 0, 0);
+                                    MakeJoint(Eggs[w, l], Eggs[w0, l]);
+                                    Eggs[w0, l].transform.position = tmpPosition;
+                                }
+                            }
+                            for (int l0 = l + 1; l0 < maxSize; ++l0)
+                            {
+                                if (Eggs[w, l0])
+                                {
+                                    Vector3 tmpPosition = Eggs[w, l0].transform.position;
+                                    Eggs[w, l0].transform.position = Eggs[w, l].transform.position + new Vector3(0, 0, Density);
+                                    MakeJoint(Eggs[w, l], Eggs[w, l0]);
+                                    Eggs[w, l0].transform.position = tmpPosition;
+                                }
+                            }
+                            break;
+
                         default:
                             break;
                     }
@@ -157,7 +181,7 @@ public class EggArmy : MonoBehaviour
         springJoint.spring = (egg1.Spring + egg2.Spring) / 2.0f;
         springJoint.enableCollision = true;
         springJoint.maxDistance = 0.002f;
-        springJoint.minDistance = 0.001f;
+        springJoint.minDistance = 0.0f;
         springJoint.tolerance = 0.1f;
         springJoint.enablePreprocessing = false;
     }
@@ -196,6 +220,11 @@ public class EggArmy : MonoBehaviour
         {
             BreakJoints();
             ConnectJoints(ConnectionType.XGrid);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            BreakJoints();
+            ConnectJoints(ConnectionType.Dense);
         }
     }
 }
