@@ -30,17 +30,6 @@ public class Leader : MonoBehaviour
     {
         rb.AddForce(0.0f, 0.0f, Speed * Input.GetAxis("Vertical"));
         rb.AddForce(Speed * Input.GetAxis("Horizontal"), 0.0f, 0.0f);
-
-        RaycastHit hit;
-        LayerMask mask = LayerMask.GetMask("Ground");
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 0.4f, mask))
-        {
-            if (Input.GetButtonDown("Jump"))
-            {
-                rb.AddExplosionForce(JumpForce, transform.position, JumpRadius);
-            }
-        }
-
     }
 
     private void LateUpdate()
