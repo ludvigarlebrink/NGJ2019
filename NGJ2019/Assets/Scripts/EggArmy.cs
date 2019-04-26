@@ -6,7 +6,7 @@ public class EggArmy : MonoBehaviour
 {
     public GameObject EggPrefab;
     public Egg[,] Eggs;
-    private const int maxSize = 16;
+    private const int maxSize = 4;
     public float Density = 1;
 
     // Start is called before the first frame update

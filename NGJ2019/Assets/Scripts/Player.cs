@@ -12,7 +12,8 @@ public class Player : MonoBehaviour
         GameObject invisObject = new GameObject();
         invisSpring = invisObject.AddComponent<SpringJoint>();
         invisSpring.spring = 50.0f;
-        invisSpring.damper = 20.0f;
+        invisSpring.damper = 0.2f;
+        invisSpring.maxDistance = 2.0f;
     }
 
     void Update()
