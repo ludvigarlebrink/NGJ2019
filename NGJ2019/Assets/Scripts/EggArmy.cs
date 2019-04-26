@@ -249,7 +249,7 @@ public class EggArmy : MonoBehaviour
             {
                 if (Input.GetButtonDown("Jump"))
                 {
-                    e.GetComponent<Rigidbody>().AddForce(Vector3.up * JumpForce);
+                    e.GetComponent<Rigidbody>().AddForce(Vector3.up * JumpForce, ForceMode.Acceleration);
                 }
             }
         }
