@@ -28,8 +28,7 @@ public class Leader : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.AddForce(0.0f, 0.0f, Speed * Input.GetAxis("Vertical"));
-        rb.AddForce(Speed * Input.GetAxis("Horizontal"), 0.0f, 0.0f);
+        rb.AddForce(new Vector3(Input.GetAxis("Horizontal"), 0.0f,  Input.GetAxis("Vertical")).normalized * Speed);
     }
 
     private void LateUpdate()
