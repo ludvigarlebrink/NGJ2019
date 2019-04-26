@@ -1124,3 +1124,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 30
+  JumpRadius: 7
+  JumpForce: 800
