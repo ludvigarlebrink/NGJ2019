@@ -8,7 +8,7 @@ public class EggArmy : MonoBehaviour
     public GameObject SpeederEgg;
     public GameObject LeaderEgg;
     public Egg[,] Eggs;
-    private const int maxSize = 3;
+    private const int maxSize = 7;
     private int currentCount = 0;
     public float Density = 1;
 
@@ -54,6 +54,8 @@ public class EggArmy : MonoBehaviour
                     switch (type)
                     {
                         case ConnectionType.Grid:
+                            Eggs[w, l].transform.rotation = Quaternion.identity;
+                            Eggs[w, l].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
                             for (int w0 = w + 1; w0 < maxSize; ++w0)
                             {
                                 if (Eggs[w0, l])
@@ -79,6 +81,8 @@ public class EggArmy : MonoBehaviour
                             break;
 
                         case ConnectionType.XGrid:
+                            Eggs[w, l].transform.rotation = Quaternion.identity;
+                            Eggs[w, l].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
                             for (int w0 = w + 1; w0 < maxSize; ++w0)
                             {
                                 if (Eggs[w0, l])
@@ -126,6 +130,8 @@ public class EggArmy : MonoBehaviour
                             break;
 
                         case ConnectionType.Snake:
+                            Eggs[w, l].transform.rotation = Quaternion.identity;
+                            Eggs[w, l].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
                             int startW = w + 1;
                             for (int l0 = l; l0 < maxSize; ++l0)
                             {
@@ -146,6 +152,7 @@ public class EggArmy : MonoBehaviour
                             break;
 
                         case ConnectionType.Dense:
+                            Eggs[w, l].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                             for (int w0 = w + 1; w0 < maxSize; ++w0)
                             {
                                 if (Eggs[w0, l])
@@ -181,8 +188,8 @@ public class EggArmy : MonoBehaviour
     {
         SpringJoint springJoint = egg1.gameObject.AddComponent<SpringJoint>();
         springJoint.connectedBody = egg2.GetComponent<Rigidbody>();
-        springJoint.damper = (egg1.Damper + egg2.Damper) / 2.0f;
-        springJoint.spring = (egg1.Spring + egg2.Spring) / 2.0f;
+        springJoint.damper = (egg1.Damper + egg2.Damper) / 0.05f;
+        springJoint.spring = (egg1.Spring + egg2.Spring) / 0.05f;
         springJoint.enableCollision = true;
         springJoint.maxDistance = 0.02f;
         springJoint.minDistance = 0.01f;
