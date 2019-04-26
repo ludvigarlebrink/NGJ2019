@@ -9,6 +9,13 @@ public class EggArmy : MonoBehaviour
     private const int maxSize = 16;
     public float Density = 1;
 
+    public enum ConnectionType
+    {
+        Grid,
+        XGrid,
+        Snake
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,13 +24,13 @@ public class EggArmy : MonoBehaviour
         {
             for (int l = 0; l < maxSize; ++l)
             {
-                Eggs[w, l] = Instantiate(EggPrefab, new Vector3(w * Density, 0, l * Density), Quaternion.identity, transform).GetComponent<Egg>();
+                Eggs[w, l] = Instantiate(EggPrefab, new Vector3(w * Density * 3, 0, l * Density * 3), Quaternion.identity, transform).GetComponent<Egg>();
             }
         }
-        ConnectJoints();
+        ConnectJoints(ConnectionType.Grid);
     }
 
-    void ConnectJoints()
+    void ConnectJoints(ConnectionType type)
     {
         for (int w = 0; w < maxSize; ++w)
         {
@@ -31,38 +38,133 @@ public class EggArmy : MonoBehaviour
             {
                 if (Eggs[w, l])
                 {
-                    for (int w0 = w + 1; w0 < maxSize; ++w0)
+                    switch (type)
                     {
-                        if (Eggs[w0, l])
-                        {
-                            SpringJoint springJoint = Eggs[w, l].gameObject.AddComponent<SpringJoint>();
-                            springJoint.connectedBody = Eggs[w0, l].GetComponent<Rigidbody>();
-                            springJoint.damper = (Eggs[w, l].Damper + Eggs[w0, l].Damper) / 2.0f;
-                            springJoint.spring = (Eggs[w, l].Spring + Eggs[w0, l].Spring) / 2.0f;
-                            springJoint.enableCollision = true;
-                            springJoint.maxDistance = Density;
-                            springJoint.minDistance = 0.0f;
-                            springJoint.tolerance = 0.1f;
-                            springJoint.enablePreprocessing = false;
+                        case ConnectionType.Grid:
+                            for (int w0 = w + 1; w0 < maxSize; ++w0)
+                            {
+                                if (Eggs[w0, l])
+                                {
+                                    Vector3 tmpPosition = Eggs[w0, l].transform.position;
+                                    Eggs[w0, l].transform.position = Eggs[w, l].transform.position + new Vector3(Density, 0, 0);
+                                    MakeJoint(Eggs[w, l], Eggs[w0, l]);
+                                    Eggs[w0, l].transform.position = tmpPosition;
+                                    break;
+                                }
+                            }
+                            for (int l0 = l + 1; l0 < maxSize; ++l0)
+                            {
+                                if (Eggs[w, l0])
+                                {
+                                    Vector3 tmpPosition = Eggs[w, l0].transform.position;
+                                    Eggs[w, l0].transform.position = Eggs[w, l].transform.position + new Vector3(0, Density, 0);
+                                    MakeJoint(Eggs[w, l], Eggs[w, l0]);
+                                    Eggs[w, l0].transform.position = tmpPosition;
+                                    break;
+                                }
+                            }
                             break;
-                        }
-                    }
 
-                    for (int l0 = l + 1; l0 < maxSize; ++l0)
-                    {
-                        if (Eggs[w, l0])
-                        {
-                            SpringJoint springJoint = Eggs[w, l].gameObject.AddComponent<SpringJoint>();
-                            springJoint.connectedBody = Eggs[w, l0].GetComponent<Rigidbody>();
-                            springJoint.damper = (Eggs[w, l].Damper + Eggs[w, l0].Damper) / 2.0f;
-                            springJoint.spring = (Eggs[w, l].Spring + Eggs[w, l0].Spring) / 2.0f;
-                            springJoint.enableCollision = true;
-                            springJoint.maxDistance = Density;
-                            springJoint.minDistance = 0.0f;
-                            springJoint.tolerance = 0.1f;
-                            springJoint.enablePreprocessing = false;
+                        case ConnectionType.XGrid:
+                            for (int w0 = w + 1; w0 < maxSize; ++w0)
+                            {
+                                if (Eggs[w0, l])
+                                {
+                                    Vector3 tmpPosition = Eggs[w0, l].transform.position;
+                                    Eggs[w0, l].transform.position = Eggs[w, l].transform.position + new Vector3(Density, 0, 0);
+                                    MakeJoint(Eggs[w, l], Eggs[w0, l]);
+                                    Eggs[w0, l].transform.position = tmpPosition;
+                                    for (int l0 = l + 1; l0 < maxSize; ++l0)
+                                    {
+                                        if (Eggs[w0, l0])
+                                        {
+                                            tmpPosition = Eggs[w0, l0].transform.position;
+                                            Eggs[w0, l0].transform.position = Eggs[w, l].transform.position + new Vector3(0, Density, 0);
+                                            MakeJoint(Eggs[w, l], Eggs[w0, l0]);
+                                            Eggs[w0, l0].transform.position = tmpPosition;
+                                            break;
+                                        }
+                                    }
+                                    break;
+                                }
+                            }
+                            for (int l0 = l + 1; l0 < maxSize; ++l0)
+                            {
+                                if (Eggs[w, l0])
+                                {
+                                    Vector3 tmpPosition = Eggs[w, l0].transform.position;
+                                    Eggs[w, l0].transform.position = Eggs[w, l].transform.position + new Vector3(0, Density, 0);
+                                    MakeJoint(Eggs[w, l], Eggs[w, l0]);
+                                    Eggs[w, l0].transform.position = tmpPosition;
+                                    for (int w0 = l - 1; w0 > 0; --w0)
+                                    {
+                                        if (Eggs[w0, l0])
+                                        {
+                                            tmpPosition = Eggs[w0, l0].transform.position;
+                                            Eggs[w0, l0].transform.position = Eggs[w, l].transform.position + new Vector3(0, Density, 0);
+                                            MakeJoint(Eggs[w, l], Eggs[w0, l0]);
+                                            Eggs[w0, l0].transform.position = tmpPosition;
+                                            break;
+                                        }
+                                    }
+                                    break;
+                                }
+                            }
                             break;
-                        }
+
+                        case ConnectionType.Snake:
+                            int startW = w + 1;
+                            for (int l0 = l; l0 < maxSize; ++l0)
+                            {
+                                for (int w0 = startW; w0 < maxSize; ++w0)
+                                {
+                                    if (Eggs[w0, l0])
+                                    {
+                                        Vector3 tmpPosition = Eggs[w0, l0].transform.position;
+                                        Eggs[w0, l0].transform.position = Eggs[w, l].transform.position + new Vector3(Density, 0, 0);
+                                        MakeJoint(Eggs[w, l], Eggs[w0, l0]);
+                                        Eggs[w0, l0].transform.position = tmpPosition;
+                                        l0 = maxSize;
+                                        break;
+                                    }
+                                }
+                                startW = 0;
+                            }
+                            break;
+
+                        default:
+                            break;
+                    }
+                    
+                }
+            }
+        }
+    }
+
+    private void MakeJoint(Egg egg1, Egg egg2)
+    {
+        SpringJoint springJoint = egg1.gameObject.AddComponent<SpringJoint>();
+        springJoint.connectedBody = egg2.GetComponent<Rigidbody>();
+        springJoint.damper = (egg1.Damper + egg2.Damper) / 2.0f;
+        springJoint.spring = (egg1.Spring + egg2.Spring) / 2.0f;
+        springJoint.enableCollision = true;
+        springJoint.maxDistance = 0.002f;
+        springJoint.minDistance = 0.001f;
+        springJoint.tolerance = 0.1f;
+        springJoint.enablePreprocessing = false;
+    }
+
+    void BreakJoints()
+    {
+        for (int w = 0; w < maxSize; ++w)
+        {
+            for (int l = 0; l < maxSize; ++l)
+            {
+                if (Eggs[w, l])
+                {
+                    foreach(SpringJoint joint in Eggs[w, l].GetComponents<SpringJoint>())
+                    {
+                        Destroy(joint);
                     }
                 }
             }
@@ -72,6 +174,20 @@ public class EggArmy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            BreakJoints();
+            ConnectJoints(ConnectionType.Grid);
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            BreakJoints();
+            ConnectJoints(ConnectionType.Snake);
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            BreakJoints();
+            ConnectJoints(ConnectionType.XGrid);
+        }
     }
 }
