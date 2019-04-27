@@ -12,6 +12,9 @@ public class EggArmy : MonoBehaviour
     public List<Egg> Eggs;
     private int currentCount = 0;
     public float Density = 1;
+    private Formation lastFormation;
+    public Egg eggie;
+    private bool isSnakeFormation;
 
     public enum Formation
     {
@@ -24,6 +27,8 @@ public class EggArmy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        eggie = Instantiate(SpeederEggPrefab, new Vector3(10, 0, 10), Quaternion.identity, transform).GetComponent<Egg>();
+        eggie.standAlone = true;
         Eggs = new List<Egg>();
         currentCount = 10;
         int sideLength = Mathf.CeilToInt(Mathf.Sqrt(currentCount));
@@ -39,6 +44,7 @@ public class EggArmy : MonoBehaviour
                 }
                 GameObject eggGo = Instantiate(SpeederEggPrefab, transform);
                 eggGo.transform.localPosition = new Vector3(w * Density, 0, l * Density);
+                eggGo.GetComponent<Egg>().standAlone = false;
                 Eggs.Add(eggGo.GetComponent<Egg>());
             }
         }
@@ -51,7 +57,23 @@ public class EggArmy : MonoBehaviour
             go.transform.SetParent(LeaderEgg.transform);
             DestinationPoints.Add(go.transform);
         }
+        isSnakeFormation = false;
         ChangeFormation(Formation.Block);
+        lastFormation = Formation.Block;
+    }
+
+    public void AddEggie(Egg littleEggie)
+    {
+        Destroy(littleEggie.gameObject);
+        ++currentCount;
+        GameObject eggGo = Instantiate(SpeederEggPrefab, new Vector3(0, 0, 0), Quaternion.identity, transform);
+        eggGo.GetComponent<Egg>().standAlone = false;
+        Eggs.Add(eggGo.GetComponent<Egg>());
+
+        GameObject go = new GameObject("Destination" + (currentCount - 1));
+        go.transform.SetParent(LeaderEgg.transform);
+        DestinationPoints.Add(go.transform);
+        ChangeFormation(lastFormation);
     }
 
     void ChangeFormation(Formation formation)
@@ -63,16 +85,25 @@ public class EggArmy : MonoBehaviour
                 float halfLength = (sideLength - 1) * 0.5f;
                 for (int w = 0; w < sideLength; ++w)
                 {
+                    bool outOfBounds = false;
                     for (int l = 0; l < sideLength; ++l)
                     {
                         int index = w * sideLength + l;
-                        if (index >= currentCount)
+                        if (index == currentCount)
                         {
-                            w = sideLength;
+                            outOfBounds = true;
                             break;
                         }
                         DestinationPoints[index].localPosition = new Vector3((w - halfLength) * Density, 0, (l - halfLength) * Density);
                     }
+                    if (outOfBounds)
+                    {
+                        break;
+                    }
+                }
+                for (int i = 0; i < currentCount; ++i)
+                {
+                    Eggs[i].AssignDestinationTransform(DestinationPoints[i]);
                 }
                 break;
 
@@ -104,11 +135,38 @@ public class EggArmy : MonoBehaviour
                     DestinationPoints[i].localPosition = Vector3.zero;
                 }
                 break;
-        }
 
-        for (int i = 0; i < currentCount; ++i)
-        {
-            Eggs[i].AssignDestinationTransform(DestinationPoints[i]);
+            case Formation.Snake:
+                if (isSnakeFormation)
+                {
+                    // traverse back-to-front and take preceding egg last position
+                    for (int i = DestinationPoints.Count - 1; i > 0; --i) // first egg will still follow the leader
+                    {
+                        Eggs[i].AssignDestinationTransform(Eggs[i - 1].transform);
+                    }
+                }
+                else
+                {
+                    // init snake formation here
+                    for (int i = 0; i < DestinationPoints.Count; ++i)
+                    {
+                        if (i != 0)
+                        {
+                            Eggs[i].transform.SetParent(Eggs[i - 1].transform);
+                            DestinationPoints[i].localPosition = new Vector3(0, 0, Density);
+                        }
+                        else
+                        {
+                            DestinationPoints[i].localPosition = new Vector3(0, 0, Density);
+                        }
+                    }
+                    for (int i = 0; i < currentCount; ++i)
+                    {
+                        Eggs[i].AssignDestinationTransform(DestinationPoints[i]);
+                    }
+                    //isSnakeFormation = true;
+                }
+                break;
         }
     }
 
@@ -118,18 +176,25 @@ public class EggArmy : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             ChangeFormation(Formation.Block);
+            lastFormation = Formation.Block;
+            isSnakeFormation = false;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             ChangeFormation(Formation.Triangle);
+            lastFormation = Formation.Triangle;
+            isSnakeFormation = false;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             ChangeFormation(Formation.Snake);
+            lastFormation = Formation.Snake;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             ChangeFormation(Formation.Dense);
+            lastFormation = Formation.Dense;
+            isSnakeFormation = false;
         }
     }
 
