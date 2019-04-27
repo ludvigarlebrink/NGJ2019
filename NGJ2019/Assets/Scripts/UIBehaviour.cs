@@ -7,6 +7,7 @@ public class UIBehaviour : MonoBehaviour
 {
     public float bubbleTimeout;
 
+    public Text time;
     public Text[] eggsTexts;
     public GameObject[] bubbles;
 
@@ -85,6 +86,9 @@ public class UIBehaviour : MonoBehaviour
 
             eggsTexts[i].text = score[i].ToString();
         }
+
+        int timeInt = (int)FindObjectOfType<Timer>().GetElapsedTime();
+        time.text = timeInt.ToString();
     }
 
     IEnumerator HideBubbleAfterDelay(GameObject bubble)

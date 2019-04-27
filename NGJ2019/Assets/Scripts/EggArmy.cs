@@ -67,6 +67,29 @@ public class EggArmy : MonoBehaviour
         lastFormation = Formation.Block;
     }
 
+    public void Restart()
+    {
+        int sideLength = Mathf.CeilToInt(Mathf.Sqrt(currentCount));
+        for (int w = 0; w < sideLength; ++w)
+        {
+            for (int l = 0; l < sideLength; ++l)
+            {
+                int index = w * sideLength + l;
+                if (index >= currentCount)
+                {
+                    w = sideLength;
+                    break;
+                }
+                Eggs[index].transform.localPosition = new Vector3(w * Density, 0, l * Density);
+                Eggs[index].gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
+            }
+        }
+        LeaderEgg.transform.position = transform.position + new Vector3((sideLength / 2.0f) * Density, 0, (sideLength / 2.0f) * Density);
+        LeaderEgg.GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
+        ChangeFormation(Formation.Block);
+        lastFormation = Formation.Block;
+    }
+
     public void AddEggie(Egg littleEggie)
     {
         ++currentCount;
