@@ -5,17 +5,18 @@ using UnityEngine;
 public class EggArmy : MonoBehaviour
 {
     public float JumpForce = 50.0f;
-    public GameObject SpeederEgg;
-    public GameObject LeaderEgg;
-    public Egg[,] Eggs;
-    private const int maxSize = 3;
+    public GameObject SpeederEggPrefab;
+    public GameObject LeaderEggPrefab;
+    private GameObject LeaderEgg;
+    public List<Transform> DestinationPoints;
+    public List<Egg> Eggs;
     private int currentCount = 0;
     public float Density = 1;
 
-    public enum ConnectionType
+    public enum Formation
     {
-        Grid,
-        XGrid,
+        Block,
+        Triangle,
         Snake,
         Dense
     }
@@ -23,187 +24,90 @@ public class EggArmy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Eggs = new Egg[maxSize, maxSize];
-        currentCount = maxSize * maxSize;
-        for (int w = 0; w < maxSize; ++w)
+        Eggs = new List<Egg>();
+        currentCount = 10;
+        int sideLength = Mathf.CeilToInt(Mathf.Sqrt(currentCount));
+        for (int w = 0; w < sideLength; ++w)
         {
-            for (int l = 0; l < maxSize; ++l)
+            for (int l = 0; l < sideLength; ++l)
             {
-                if (l == Mathf.Floor(maxSize / 2) && w == Mathf.Floor(maxSize / 2))
+                int index = w * sideLength + l;
+                if (index >= currentCount)
                 {
-                    Eggs[w, l] = Instantiate(LeaderEgg, new Vector3(w * Density, 0, l * Density), Quaternion.identity, transform).GetComponent<Egg>();
-                    Eggs[w, l].GetComponent<Leader>().SpeedModifier = currentCount * 2.4f;
+                    w = sideLength;
+                    break;
                 }
-                else
-                {
-                    Eggs[w, l] = Instantiate(SpeederEgg, new Vector3(w * Density, 0, l * Density), Quaternion.identity, transform).GetComponent<Egg>();
-                }
+                GameObject eggGo = Instantiate(SpeederEggPrefab, new Vector3(w * Density, 0, l * Density), Quaternion.identity, transform);
+                Eggs.Add(eggGo.GetComponent<Egg>());
             }
         }
-        ConnectJoints(ConnectionType.Grid);
-    }
 
-    void ConnectJoints(ConnectionType type)
-    {
-        for (int w = 0; w < maxSize; ++w)
+        LeaderEgg = Instantiate(LeaderEggPrefab, new Vector3((sideLength / 2.0f) * Density, 0, (sideLength / 2.0f) * Density), Quaternion.identity);
+
+        for (int i = 0; i < currentCount; ++i)
         {
-            for (int l = 0; l < maxSize; ++l)
-            {
-                if (Eggs[w, l])
-                {
-                    switch (type)
-                    {
-                        case ConnectionType.Grid:
-                            for (int w0 = w + 1; w0 < maxSize; ++w0)
-                            {
-                                if (Eggs[w0, l])
-                                {
-                                    Vector3 tmpPosition = Eggs[w0, l].transform.position;
-                                    Eggs[w0, l].transform.position = Eggs[w, l].transform.position + new Vector3(Density, 0, 0);
-                                    MakeJoint(Eggs[w, l], Eggs[w0, l]);
-                                    Eggs[w0, l].transform.position = tmpPosition;
-                                    break;
-                                }
-                            }
-                            for (int l0 = l + 1; l0 < maxSize; ++l0)
-                            {
-                                if (Eggs[w, l0])
-                                {
-                                    Vector3 tmpPosition = Eggs[w, l0].transform.position;
-                                    Eggs[w, l0].transform.position = Eggs[w, l].transform.position + new Vector3(0, 0, Density);
-                                    MakeJoint(Eggs[w, l], Eggs[w, l0]);
-                                    Eggs[w, l0].transform.position = tmpPosition;
-                                    break;
-                                }
-                            }
-                            break;
-
-                        case ConnectionType.XGrid:
-                            for (int w0 = w + 1; w0 < maxSize; ++w0)
-                            {
-                                if (Eggs[w0, l])
-                                {
-                                    Vector3 tmpPosition = Eggs[w0, l].transform.position;
-                                    Eggs[w0, l].transform.position = Eggs[w, l].transform.position + new Vector3(Density, 0, 0);
-                                    MakeJoint(Eggs[w, l], Eggs[w0, l]);
-                                    Eggs[w0, l].transform.position = tmpPosition;
-                                    for (int l0 = l + 1; l0 < maxSize; ++l0)
-                                    {
-                                        if (Eggs[w0, l0])
-                                        {
-                                            tmpPosition = Eggs[w0, l0].transform.position;
-                                            Eggs[w0, l0].transform.position = Eggs[w, l].transform.position + new Vector3(Density, 0, Density);
-                                            MakeJoint(Eggs[w, l], Eggs[w0, l0]);
-                                            Eggs[w0, l0].transform.position = tmpPosition;
-                                            break;
-                                        }
-                                    }
-                                    break;
-                                }
-                            }
-                            for (int l0 = l + 1; l0 < maxSize; ++l0)
-                            {
-                                if (Eggs[w, l0])
-                                {
-                                    Vector3 tmpPosition = Eggs[w, l0].transform.position;
-                                    Eggs[w, l0].transform.position = Eggs[w, l].transform.position + new Vector3(0, 0, Density);
-                                    MakeJoint(Eggs[w, l], Eggs[w, l0]);
-                                    Eggs[w, l0].transform.position = tmpPosition;
-                                    for (int w0 = l - 1; w0 > 0; --w0)
-                                    {
-                                        if (Eggs[w0, l0])
-                                        {
-                                            tmpPosition = Eggs[w0, l0].transform.position;
-                                            Eggs[w0, l0].transform.position = Eggs[w, l].transform.position + new Vector3(-Density, 0, Density);
-                                            MakeJoint(Eggs[w, l], Eggs[w0, l0]);
-                                            Eggs[w0, l0].transform.position = tmpPosition;
-                                            break;
-                                        }
-                                    }
-                                    break;
-                                }
-                            }
-                            break;
-
-                        case ConnectionType.Snake:
-                            int startW = w + 1;
-                            for (int l0 = l; l0 < maxSize; ++l0)
-                            {
-                                for (int w0 = startW; w0 < maxSize; ++w0)
-                                {
-                                    if (Eggs[w0, l0])
-                                    {
-                                        Vector3 tmpPosition = Eggs[w0, l0].transform.position;
-                                        Eggs[w0, l0].transform.position = Eggs[w, l].transform.position + new Vector3(Density, 0, 0);
-                                        MakeJoint(Eggs[w, l], Eggs[w0, l0]);
-                                        Eggs[w0, l0].transform.position = tmpPosition;
-                                        l0 = maxSize;
-                                        break;
-                                    }
-                                }
-                                startW = 0;
-                            }
-                            break;
-
-                        case ConnectionType.Dense:
-                            for (int w0 = w + 1; w0 < maxSize; ++w0)
-                            {
-                                if (Eggs[w0, l])
-                                {
-                                    Vector3 tmpPosition = Eggs[w0, l].transform.position;
-                                    Eggs[w0, l].transform.position = Eggs[w, l].transform.position + new Vector3(Density, 0, 0);
-                                    MakeJoint(Eggs[w, l], Eggs[w0, l]);
-                                    Eggs[w0, l].transform.position = tmpPosition;
-                                }
-                            }
-                            for (int l0 = l + 1; l0 < maxSize; ++l0)
-                            {
-                                if (Eggs[w, l0])
-                                {
-                                    Vector3 tmpPosition = Eggs[w, l0].transform.position;
-                                    Eggs[w, l0].transform.position = Eggs[w, l].transform.position + new Vector3(0, 0, Density);
-                                    MakeJoint(Eggs[w, l], Eggs[w, l0]);
-                                    Eggs[w, l0].transform.position = tmpPosition;
-                                }
-                            }
-                            break;
-
-                        default:
-                            break;
-                    }
-                    
-                }
-            }
+            GameObject go = new GameObject("Destination" + i);
+            go.transform.SetParent(LeaderEgg.transform);
+            DestinationPoints.Add(go.transform);
         }
+        ChangeFormation(Formation.Block);
     }
 
-    private void MakeJoint(Egg egg1, Egg egg2)
+    void ChangeFormation(Formation formation)
     {
-        SpringJoint springJoint = egg1.gameObject.AddComponent<SpringJoint>();
-        springJoint.connectedBody = egg2.GetComponent<Rigidbody>();
-        springJoint.damper = (egg1.Damper + egg2.Damper) / 2.0f;
-        springJoint.spring = (egg1.Spring + egg2.Spring) / 2.0f;
-        springJoint.enableCollision = true;
-        springJoint.maxDistance = 0.02f;
-        springJoint.minDistance = 0.01f;
-        springJoint.tolerance = 0.0f;
-        springJoint.enablePreprocessing = false;
-    }
-
-    void BreakJoints()
-    {
-        for (int w = 0; w < maxSize; ++w)
+        switch (formation)
         {
-            for (int l = 0; l < maxSize; ++l)
-            {
-                if (Eggs[w, l])
+            case Formation.Block:
+                int sideLength = Mathf.CeilToInt(Mathf.Sqrt(currentCount));
+                float halfLength = (sideLength - 1) * 0.5f;
+                for (int w = 0; w < sideLength; ++w)
                 {
-                    foreach(SpringJoint joint in Eggs[w, l].GetComponents<SpringJoint>())
+                    for (int l = 0; l < sideLength; ++l)
                     {
-                        Destroy(joint);
+                        int index = w * sideLength + l;
+                        if (index >= currentCount)
+                        {
+                            w = sideLength;
+                            break;
+                        }
+                        DestinationPoints[index].localPosition = new Vector3((w - halfLength) * Density, 0, (l - halfLength) * Density);
                     }
                 }
-            }
+                break;
+
+            case Formation.Triangle:
+                float lineDistance = Density * 0.866f;
+                int countPerLine = 1;
+                int counterInLine = 0;
+                int lineCounter = 0;
+                for (int i = 0; i < currentCount; ++i)
+                {
+                    DestinationPoints[i].localPosition = new Vector3((counterInLine - ((countPerLine - 1)* 0.5f)) * Density, 0, lineCounter * -lineDistance);
+                    ++counterInLine;
+                    if (counterInLine >= countPerLine)
+                    {
+                        countPerLine++;
+                        lineCounter++;
+                        counterInLine = 0;
+                        if (countPerLine > currentCount - (i + 1))
+                        {
+                            countPerLine = currentCount - (i + 1);
+                        }
+                    }
+                }
+                break;
+
+            case Formation.Dense:
+                for (int i = 0; i < currentCount; ++i)
+                {
+                    DestinationPoints[i].localPosition = Vector3.zero;
+                }
+                break;
+        }
+
+        for (int i = 0; i < currentCount; ++i)
+        {
+            Eggs[i].AssignDestinationTransform(DestinationPoints[i]);
         }
     }
 
@@ -212,23 +116,19 @@ public class EggArmy : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            BreakJoints();
-            ConnectJoints(ConnectionType.Grid);
+            ChangeFormation(Formation.Block);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            BreakJoints();
-            ConnectJoints(ConnectionType.Snake);
+            ChangeFormation(Formation.Triangle);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            BreakJoints();
-            ConnectJoints(ConnectionType.XGrid);
+            ChangeFormation(Formation.Snake);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            BreakJoints();
-            ConnectJoints(ConnectionType.Dense);
+            ChangeFormation(Formation.Dense);
         }
     }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InputComponent : MonoBehaviour
+public class UIBehaviour : MonoBehaviour
 {
     public float bubbleTimeout;
 
@@ -16,8 +16,8 @@ public class InputComponent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        foreach(GameObject bubble in bubbles)
+
+        foreach (GameObject bubble in bubbles)
         {
             bubble.SetActive(false);
         }
@@ -56,20 +56,20 @@ public class InputComponent : MonoBehaviour
             score[eggIndex]++;
             eggsTexts[eggIndex].GetComponent<Animator>().SetTrigger("Active");
 
-            if(score[eggIndex] > 1)
+            if (score[eggIndex] > 1)
             {
-                for(int i = 0; i < bubbles.Length; i++)
+                for (int i = 0; i < bubbles.Length; i++)
                 {
-                    if(i != eggIndex)
+                    if (i != eggIndex)
                     {
                         bubbles[i].SetActive(true);
 
-                        if(bubblesTimeouts[i] != null)
+                        if (bubblesTimeouts[i] != null)
                         {
                             StopCoroutine(bubblesTimeouts[i]);
                         }
 
-                        bubblesTimeouts[i] = HideBubbleAfterDelay(bubbles[i]);  
+                        bubblesTimeouts[i] = HideBubbleAfterDelay(bubbles[i]);
                         StartCoroutine(bubblesTimeouts[i]);
                     }
                 }
@@ -78,7 +78,7 @@ public class InputComponent : MonoBehaviour
 
         for (int i = 0; i < eggsTexts.Length; i++)
         {
-            if(score[i] > 99)
+            if (score[i] > 99)
             {
                 score[i] = 99;
             }

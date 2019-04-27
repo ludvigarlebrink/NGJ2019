@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515463237487350169}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Leg.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1515463237735616672}
   - component: {fileID: 1515463237735616687}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Egg.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515463237928313103}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Foot.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1515463237959899141}
   - component: {fileID: 1515463237959899140}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Egg.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515463238111793394}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515463238126492576}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hips.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,7 +323,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515463238176047676}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LegIK.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,7 +353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515463238278859561}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LegIK.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +383,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515463238356896238}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Thigh.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1515463238590252259}
   - component: {fileID: 1515463238590252258}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Egg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515463238592530243}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: KneeCtrl.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -539,7 +539,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515463238602453402}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Foot.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -569,7 +569,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515463238621006842}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LegIK.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -600,7 +600,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515463238639713682}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hips.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -631,7 +631,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515463238730339477}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LegCtr.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -663,7 +663,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515463238752038049}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Root_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -693,7 +693,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515463238778578845}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -728,7 +728,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515463238944735864}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Thigh.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -759,7 +759,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515463238982201452}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Leg.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -790,7 +790,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515463239016625412}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LegIK.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -821,7 +821,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515463239108351743}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: KneeCtrl.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -852,7 +852,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515463239144291861}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: KneeCtrl.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -882,7 +882,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515463239221747891}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LegCtr.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -914,7 +914,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515463239226594120}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: KneeCtrl.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -945,7 +945,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515463239495236269}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Foot.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -976,7 +976,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515463239552432357}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Foot.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1010,7 +1010,7 @@ GameObject:
   - component: {fileID: 3177025477774282427}
   - component: {fileID: 6979701942258161177}
   - component: {fileID: 2223540266228009868}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Prf_EggSpeeder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1066,20 +1066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c5db76759e8b54b80d1cefa91c3e1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GridPosX: 0
-  GridPosY: 0
-  Joints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  Eggs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  Damper: 5000
-  Spring: 20000
+  Speed: 2
 --- !u!136 &6979701942258161177
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1107,6 +1094,6 @@ Rigidbody:
   m_AngularDrag: 0.15
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 0
+  m_Interpolate: 1
+  m_Constraints: 112
+  m_CollisionDetection: 1
