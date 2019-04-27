@@ -19,7 +19,10 @@ public class SocketBehaviour : MonoBehaviour
             if (requiredNumber > 0)
             {
                 requiredNumber--;
-                Instantiate(particleOnCollision, transform.position, Quaternion.identity);
+                if (particleOnCollision)
+                {
+                    Instantiate(particleOnCollision, transform.position, Quaternion.identity);
+                }
                 //particleOnCollision.Play();
                 Destroy(other.gameObject);
             }
