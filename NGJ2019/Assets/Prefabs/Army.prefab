@@ -43,6 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b754f7b5433f5db43a0a4b3cbd2dd93e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DeathPrefab: {fileID: 3184075223004040017, guid: d3a8900734c6d4345a3d203249d19cf7,
+    type: 3}
   JumpForce: 200
   SpeederEggPrefab: {fileID: 7587379312685690806, guid: 0cfa0d0d75ddc0b40a51a8244fef74d3,
     type: 3}
@@ -51,3 +53,4 @@ MonoBehaviour:
   DestinationPoints: []
   Eggs: []
   Density: 0.35
+  eggie: {fileID: 0}

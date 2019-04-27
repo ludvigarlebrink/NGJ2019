@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EggArmy : MonoBehaviour
 {
+    public GameObject DeathPrefab = null;
     public float JumpForce = 50.0f;
     public GameObject SpeederEggPrefab;
     public GameObject LeaderEggPrefab;
@@ -305,6 +306,8 @@ public class EggArmy : MonoBehaviour
         {
             if (Eggs.Remove(egg))
             {
+                GameObject death = Instantiate(DeathPrefab, egg.transform.position, Quaternion.identity);
+                Destroy(death, 1.0f);
                 Destroy(egg.gameObject);
                 --currentCount;
                 ChangeFormation(activeFormation);
