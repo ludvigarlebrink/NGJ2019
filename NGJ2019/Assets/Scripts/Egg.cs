@@ -22,6 +22,17 @@ public class Egg : MonoBehaviour
         destination = _destination;
     }
 
+    private void Update()
+    {
+        Vector3 transformPos = new Vector3(transform.position.x, 0.0f, transform.position.z);
+        Vector3 destionationPos = new Vector3(destination.position.x, 0.0f, destination.position.z);
+        if (Vector3.Distance(transformPos, destionationPos) > 0.01f)
+        {
+            Quaternion rotation = Quaternion.LookRotation((destionationPos - transformPos).normalized, Vector3.up);
+            transform.rotation = Quaternion.Euler(0.0f, rotation.eulerAngles.y, 0.0f);
+        }
+    }
+
     void FixedUpdate()
     {
         animator.SetFloat("Speed", new Vector2(rb.velocity.x, rb.velocity.z).sqrMagnitude);

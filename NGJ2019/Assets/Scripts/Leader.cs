@@ -32,6 +32,6 @@ public class Leader : MonoBehaviour
         Vector3 vec = transform.forward * Input.GetAxis("Vertical");
         vec += transform.right * Input.GetAxis("Horizontal");
         vec = vec.normalized * Speed;
-        rb.AddForce(vec);
+        rb.AddForce(vec, ForceMode.VelocityChange);
     }
 }
