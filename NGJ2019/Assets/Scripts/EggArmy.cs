@@ -101,7 +101,6 @@ public class EggArmy : MonoBehaviour
         go.transform.SetParent(LeaderEgg.transform);
         DestinationPoints.Add(go.transform);
         ChangeFormation(lastFormation);
-        littleEggie.type = Egg.Type.Green;
         FindObjectOfType<UIBehaviour>().EggCollected(littleEggie.type);
     }
 

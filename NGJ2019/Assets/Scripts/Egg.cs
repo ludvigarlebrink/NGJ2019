@@ -81,7 +81,6 @@ public class Egg : MonoBehaviour
                             Destroy(rb);
                             rb = null;
                         }
-
                     }
                 }
             }

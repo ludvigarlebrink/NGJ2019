@@ -13,11 +13,17 @@ public class DoorBreakBehaviour : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void Update()
+    private void OnCollisionEnter(Collision collision)
     {
-        if(Input.GetKeyDown(KeyCode.S))
+        Egg egg = collision.gameObject.GetComponent<Egg>();
+        if (egg && egg.type == Egg.Type.Black && egg.specialityActivated)
         {
+            Destroy(egg.gameObject);
             DoorBreak();
         }
+    }
+
+    private void Update()
+    {
     }
 }
