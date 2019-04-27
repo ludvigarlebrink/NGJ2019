@@ -30,38 +30,32 @@ public class UIBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int eggIndex = -1;
-
-        if (Input.GetKeyDown(KeyCode.A))
+        for (int i = 0; i < eggsTexts.Length; i++)
         {
-            eggIndex = 0;
+            if (score[i] > 99)
+            {
+                score[i] = 99;
+            }
+
+            eggsTexts[i].text = score[i].ToString();
         }
 
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            eggIndex = 1;
-        }
+        int timeInt = (int)FindObjectOfType<Timer>().GetElapsedTime();
+        time.text = timeInt.ToString();
+    }
 
-        if (Input.GetKeyDown(KeyCode.D))
+    public void EggCollected(Egg.Type type)
+    {
+        if (type >= 0)
         {
-            eggIndex = 2;
-        }
+            score[(int)type]++;
+            eggsTexts[(int)type].GetComponent<Animator>().SetTrigger("Active");
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            eggIndex = 3;
-        }
-
-        if (eggIndex >= 0)
-        {
-            score[eggIndex]++;
-            eggsTexts[eggIndex].GetComponent<Animator>().SetTrigger("Active");
-
-            if (score[eggIndex] > 1)
+            if (score[(int)type] > 1)
             {
                 for (int i = 0; i < bubbles.Length; i++)
                 {
-                    if (i != eggIndex)
+                    if (i != (int)type)
                     {
                         bubbles[i].SetActive(true);
 
@@ -76,19 +70,6 @@ public class UIBehaviour : MonoBehaviour
                 }
             }
         }
-
-        for (int i = 0; i < eggsTexts.Length; i++)
-        {
-            if (score[i] > 99)
-            {
-                score[i] = 99;
-            }
-
-            eggsTexts[i].text = score[i].ToString();
-        }
-
-        int timeInt = (int)FindObjectOfType<Timer>().GetElapsedTime();
-        time.text = timeInt.ToString();
     }
 
     IEnumerator HideBubbleAfterDelay(GameObject bubble)

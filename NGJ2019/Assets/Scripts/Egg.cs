@@ -12,6 +12,16 @@ public class Egg : MonoBehaviour
 
     public bool standAlone;
 
+    public Type type;
+
+    public enum Type
+    {
+        Red = 0,
+        Blue = 1,
+        Black = 2,
+        Green = 3
+    }
+
     void Start()
     {
         animator = GetComponent<Animator>();
