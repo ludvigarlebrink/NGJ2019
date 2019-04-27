@@ -116,7 +116,7 @@ public class EggArmy : MonoBehaviour
                 int lineCounter = 0;
                 for (int i = 0; i < currentCount; ++i)
                 {
-                    DestinationPoints[i].localPosition = new Vector3((counterInLine - ((countPerLine - 1)* 0.5f)) * Density, 0, lineCounter * -lineDistance);
+                    DestinationPoints[i].localPosition = new Vector3((counterInLine - ((countPerLine - 1) * 0.5f)) * Density, 0, lineCounter * -lineDistance);
                     ++counterInLine;
                     if (counterInLine >= countPerLine)
                     {
@@ -218,10 +218,14 @@ public class EggArmy : MonoBehaviour
 
     public void KillEgg(Egg egg)
     {
-        if (Eggs.Remove(egg))
+        if (egg)
         {
-            Destroy(egg.gameObject);
-            ChangeFormation(activeFormation);
+            if (Eggs.Remove(egg))
+            {
+                Destroy(egg.gameObject);
+                --currentCount;
+                ChangeFormation(activeFormation);
+            }
         }
     }
 }

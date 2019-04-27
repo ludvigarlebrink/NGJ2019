@@ -17,7 +17,6 @@ public class BuzzSawBehaviour : MonoBehaviour
         {
             EggArmy army = FindObjectOfType<EggArmy>();
             army.KillEgg(other.GetComponent<Egg>());
-            // Destroy(other.gameObject);
         }
     }
 }
