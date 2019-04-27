@@ -298,6 +298,17 @@ public class EggArmy : MonoBehaviour
                 }
             }
         }
+
+        RaycastHit leaderHit;
+        LayerMask groundMask = LayerMask.GetMask("Ground");
+        if (Physics.Raycast(LeaderEgg.transform.position, Vector3.down, out leaderHit, 0.4f, groundMask))
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                LeaderEgg.GetComponent<Rigidbody>().AddForce(Vector3.up * JumpForce, ForceMode.Acceleration);
+            }
+        }
+
     }
 
     public void KillEgg(Egg egg)
