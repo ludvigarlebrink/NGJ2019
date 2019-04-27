@@ -100,6 +100,8 @@ public class EggArmy : MonoBehaviour
         go.transform.SetParent(LeaderEgg.transform);
         DestinationPoints.Add(go.transform);
         ChangeFormation(lastFormation);
+        littleEggie.type = Egg.Type.Green;
+        FindObjectOfType<UIBehaviour>().EggCollected(littleEggie.type);
     }
 
     void ChangeFormation(Formation formation)
@@ -195,6 +197,30 @@ public class EggArmy : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    public void ActivateSpecialEgg(Egg.Type type, Transform destinationTransform)
+    {
+        Egg specialEgg = null;
+        for (int i = 0; i < Eggs.Count; ++i)
+        {
+            if (Eggs[i].type == type)
+            {
+                specialEgg = Eggs[i];
+                RemoveEggityEggFromLists(i);
+                break;
+            }
+        }
+        specialEgg.ActivateSpeciality();
+        specialEgg.AssignDestinationTransform(destinationTransform);
+    }
+
+    void RemoveEggityEggFromLists(int index)
+    {
+        Eggs.RemoveAt(index);
+        DestinationPoints.RemoveAt(index);
+        --currentCount;
+        ChangeFormation(lastFormation);
     }
 
     // Update is called once per frame
