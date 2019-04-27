@@ -74,9 +74,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3523f236c3c355c4e94721fd036406b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 10
-  SpeedModifier: 1
+  Speed: 12.5
   JumpRadius: 15
   JumpForce: 800
   cameraSmoothSpeed: 0.02
-  cameraOffset: {x: 0, y: 2, z: 2.5}
+  cameraOffset: {x: 0, y: 5.15, z: -2.5}

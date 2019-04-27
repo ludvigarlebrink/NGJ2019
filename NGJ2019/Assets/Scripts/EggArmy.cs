@@ -38,8 +38,6 @@ public class EggArmy : MonoBehaviour
         }
 
         LeaderEgg = Instantiate(LeaderEggPrefab, new Vector3((sideLength / 2.0f) * Density, 0, (sideLength / 2.0f) * Density), Quaternion.identity);
-        LeaderEgg.GetComponent<Leader>().SpeedModifier = currentCount * 2.4f;
-
 
         for (int i = 0; i < currentCount; ++i)
         {
@@ -56,13 +54,13 @@ public class EggArmy : MonoBehaviour
         {
             case Formation.Block:
                 int sideLength = Mathf.CeilToInt(Mathf.Sqrt(currentCount));
-                int leaderIndex = Mathf.CeilToInt(sideLength * 0.5f);
+                float halfLength = (sideLength - 1) * 0.5f;
                 for (int w = 0; w < sideLength; ++w)
                 {
                     for (int l = 0; l < sideLength; ++l)
                     {
                         int index = w * sideLength + l;
-                        DestinationPoints[index].localPosition = new Vector3((w - leaderIndex) * Density, 0, (l - leaderIndex) * Density);
+                        DestinationPoints[index].localPosition = new Vector3((w - halfLength) * Density, 0, (l - halfLength) * Density);
                     }
                 }
                 break;
