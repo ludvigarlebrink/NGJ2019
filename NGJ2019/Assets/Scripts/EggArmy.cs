@@ -64,11 +64,9 @@ public class EggArmy : MonoBehaviour
 
     public void AddEggie(Egg littleEggie)
     {
-        Destroy(littleEggie.gameObject);
         ++currentCount;
-        GameObject eggGo = Instantiate(SpeederEggPrefab, new Vector3(0, 0, 0), Quaternion.identity, transform);
-        eggGo.GetComponent<Egg>().standAlone = false;
-        Eggs.Add(eggGo.GetComponent<Egg>());
+        littleEggie.standAlone = false;
+        Eggs.Add(littleEggie);
 
         GameObject go = new GameObject("Destination" + (currentCount - 1));
         go.transform.SetParent(LeaderEgg.transform);

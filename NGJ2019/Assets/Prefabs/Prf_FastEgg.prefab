@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2411708321157557405}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hips.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5807383675897421597}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: KneeCtrl.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 890026186040609185}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Root_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3233752137801357783}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LegIK.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6646954962532576401}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LegIK.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1002350958806587819}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Thigh.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,9 +196,9 @@ GameObject:
   - component: {fileID: 4698225459128967647}
   - component: {fileID: -7946548459661942327}
   - component: {fileID: 6578858891513662805}
-  - component: {fileID: -634901285132020986}
-  m_Layer: 0
-  m_Name: fastEgg
+  - component: {fileID: -4017645211803945659}
+  m_Layer: 9
+  m_Name: Prf_FastEgg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -254,20 +254,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c5db76759e8b54b80d1cefa91c3e1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GridPosX: 0
-  GridPosY: 0
-  Joints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  Eggs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  Damper: 2
-  Spring: 10
+  Speed: 2
+  destination: {fileID: 0}
+  standAlone: 0
 --- !u!54 &6578858891513662805
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -277,15 +266,15 @@ Rigidbody:
   m_GameObject: {fileID: 1865098485839593142}
   serializedVersion: 2
   m_Mass: 0.2
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 1
+  m_AngularDrag: 0.15
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!135 &-634901285132020986
-SphereCollider:
+  m_Interpolate: 1
+  m_Constraints: 112
+  m_CollisionDetection: 1
+--- !u!136 &-4017645211803945659
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -294,8 +283,9 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.1
+  m_Height: 0.4
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3181327561031611765
 GameObject:
@@ -307,7 +297,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6955011662899334896}
   - component: {fileID: 7466279658764579276}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Egg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,7 +391,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1168628346089439511}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Foot.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -432,7 +422,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4829174220151222785}
   - component: {fileID: 8410148491409843895}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Egg.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -526,7 +516,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2218363172861355498}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LegIK.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -556,7 +546,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8652052721131537744}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Foot.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -588,7 +578,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4529944135429555939}
   - component: {fileID: 4878866047255414013}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Egg.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -682,7 +672,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4515677893169046744}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: KneeCtrl.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -713,7 +703,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7269220635994392904}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: KneeCtrl.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -743,7 +733,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2463551642196114975}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Foot.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -774,7 +764,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 653090924882353231}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LegIK.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -805,7 +795,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8754684637966834496}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LegCtr.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -837,7 +827,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3768250851094209518}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Leg.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -868,7 +858,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5174487623777512656}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hips.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -899,7 +889,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 465279996870330821}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -930,7 +920,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1375702688450250539}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -965,7 +955,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 962900919107696496}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: KneeCtrl.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -995,7 +985,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7817221047892828489}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Thigh.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1026,7 +1016,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7896121397293381488}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LegCtr.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1058,7 +1048,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2805549979423701802}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Foot.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1088,7 +1078,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4491295668454862326}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Leg.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1117,29 +1107,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3438903932208843941}
     m_Modifications:
-    - target: {fileID: 19800000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
-      propertyPath: looping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.96365935
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.2028302
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.84
-      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
       propertyPath: m_Name
       value: CFX_ElectricityBall
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1147,7 +1121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.124
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1184,6 +1158,34 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.96365935
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.2028302
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}

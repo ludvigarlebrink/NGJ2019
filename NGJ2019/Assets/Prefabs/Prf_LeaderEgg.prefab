@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1678624914128699437}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Thigh.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,9 +44,9 @@ GameObject:
   - component: {fileID: 4079903820141129588}
   - component: {fileID: 5278007130739001706}
   - component: {fileID: 280763956869829606}
-  - component: {fileID: 297446834335819303}
-  m_Layer: 0
-  m_Name: leaderEgg
+  - component: {fileID: 8876739769100824952}
+  m_Layer: 9
+  m_Name: Prf_LeaderEgg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,13 +98,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234351717559641904}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3523f236c3c355c4e94721fd036406b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 1
-  SpeedModifier: 1
   JumpRadius: 15
   JumpForce: 800
   cameraSmoothSpeed: 0
@@ -117,14 +116,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234351717559641904}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 0.2
+  m_Drag: 1
+  m_AngularDrag: 0.15
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Interpolate: 1
+  m_Constraints: 112
+  m_CollisionDetection: 1
 --- !u!114 &280763956869829606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,22 +136,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c5db76759e8b54b80d1cefa91c3e1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GridPosX: 0
-  GridPosY: 0
-  Joints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  Eggs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  Damper: 2
-  Spring: 10
---- !u!135 &297446834335819303
-SphereCollider:
+  Speed: 2
+  destination: {fileID: 0}
+  standAlone: 0
+--- !u!136 &8876739769100824952
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -161,8 +149,9 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.1
+  m_Height: 0.4
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &580408824045094956
 GameObject:
@@ -173,7 +162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5087949133238859031}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LegIK.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +192,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3909728084743159889}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LegIK.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5347255152337733275}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: KneeCtrl.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1655282371857764391}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Root_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -296,7 +285,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4141004985504501475}
   - component: {fileID: 1508795922745169732}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Icosphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +379,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4312943647176815899}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hips.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,7 +411,7 @@ GameObject:
   m_Component:
   - component: {fileID: 249303103904004694}
   - component: {fileID: 5145399942311993225}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Icosphere.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -516,7 +505,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 762640918010288273}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Foot.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -547,7 +536,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8802169850201053046}
   - component: {fileID: 9024986464316844106}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Egg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -642,7 +631,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8965949719249168567}
   - component: {fileID: 308376845713236298}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Icosphere.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -736,7 +725,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1419339948227003849}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LegIK.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -767,7 +756,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3380295370293377640}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Leg.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -798,7 +787,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7195731715688907462}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LegCtr.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -830,7 +819,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9098336890285838542}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: KneeCtrl.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -860,7 +849,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4076593013858412441}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Foot.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -892,7 +881,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2629860998874914661}
   - component: {fileID: 6419751834733043067}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Egg.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -986,7 +975,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2596419243694079326}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: KneeCtrl.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1017,7 +1006,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 318498937902660716}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LegIK.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1047,7 +1036,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7111457101172186326}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Foot.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1078,7 +1067,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2663585646520824944}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Leg.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1109,7 +1098,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8590075357929615094}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LegCtr.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1141,7 +1130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4345388985054667436}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Foot.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1171,7 +1160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 699683964240256685}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1206,7 +1195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1728913715027046134}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: KneeCtrl.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1236,7 +1225,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8565536111024715983}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Thigh.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1267,7 +1256,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6732254179451647318}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hips.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1298,7 +1287,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2078337719477358659}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
