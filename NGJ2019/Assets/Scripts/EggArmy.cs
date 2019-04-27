@@ -25,13 +25,18 @@ public class EggArmy : MonoBehaviour
     void Start()
     {
         Eggs = new List<Egg>();
-        currentCount = 16;
+        currentCount = 10;
         int sideLength = Mathf.CeilToInt(Mathf.Sqrt(currentCount));
         for (int w = 0; w < sideLength; ++w)
         {
             for (int l = 0; l < sideLength; ++l)
             {
                 int index = w * sideLength + l;
+                if (index >= currentCount)
+                {
+                    w = sideLength;
+                    break;
+                }
                 GameObject eggGo = Instantiate(SpeederEggPrefab, new Vector3(w * Density, 0, l * Density), Quaternion.identity, transform);
                 Eggs.Add(eggGo.GetComponent<Egg>());
             }
@@ -60,8 +65,42 @@ public class EggArmy : MonoBehaviour
                     for (int l = 0; l < sideLength; ++l)
                     {
                         int index = w * sideLength + l;
+                        if (index >= currentCount)
+                        {
+                            w = sideLength;
+                            break;
+                        }
                         DestinationPoints[index].localPosition = new Vector3((w - halfLength) * Density, 0, (l - halfLength) * Density);
                     }
+                }
+                break;
+
+            case Formation.Triangle:
+                float lineDistance = Density * 0.866f;
+                int countPerLine = 1;
+                int counterInLine = 0;
+                int lineCounter = 0;
+                for (int i = 0; i < currentCount; ++i)
+                {
+                    DestinationPoints[i].localPosition = new Vector3((counterInLine - ((countPerLine - 1)* 0.5f)) * Density, 0, lineCounter * -lineDistance);
+                    ++counterInLine;
+                    if (counterInLine >= countPerLine)
+                    {
+                        countPerLine++;
+                        lineCounter++;
+                        counterInLine = 0;
+                        if (countPerLine > currentCount - (i + 1))
+                        {
+                            countPerLine = currentCount - (i + 1);
+                        }
+                    }
+                }
+                break;
+
+            case Formation.Dense:
+                for (int i = 0; i < currentCount; ++i)
+                {
+                    DestinationPoints[i].localPosition = Vector3.zero;
                 }
                 break;
         }
