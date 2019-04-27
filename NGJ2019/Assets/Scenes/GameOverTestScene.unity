@@ -395,7 +395,6 @@ MonoBehaviour:
   point2: {fileID: 631516084}
   knife: {fileID: 1443691525}
   speed: 10
-  spawnTime: 1
 --- !u!4 &21762756
 Transform:
   m_ObjectHideFlags: 0
@@ -761,7 +760,6 @@ MonoBehaviour:
   point2: {fileID: 2124700683}
   knife: {fileID: 61419395}
   speed: 10
-  spawnTime: 1
 --- !u!4 &111346330
 Transform:
   m_ObjectHideFlags: 0
@@ -1059,7 +1057,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 552460860}
+  - {fileID: 170160891}
   - {fileID: 1340031830}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -1069,6 +1067,80 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &170160890
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 170160891}
+  - component: {fileID: 170160893}
+  - component: {fileID: 170160892}
+  m_Layer: 5
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &170160891
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170160890}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 135008345}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &170160892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170160890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &170160893
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170160890}
+  m_CullTransparentMesh: 0
 --- !u!1 &193110603
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,7 +1174,6 @@ MonoBehaviour:
   point2: {fileID: 1960186267}
   knife: {fileID: 1092394862}
   speed: 10
-  spawnTime: 1
 --- !u!4 &193110605
 Transform:
   m_ObjectHideFlags: 0
@@ -1467,7 +1538,6 @@ MonoBehaviour:
   point2: {fileID: 1829046014}
   knife: {fileID: 1278247327}
   speed: 10
-  spawnTime: 1
 --- !u!4 &253460908
 Transform:
   m_ObjectHideFlags: 0
@@ -1768,7 +1838,6 @@ MonoBehaviour:
   point2: {fileID: 1063217506}
   knife: {fileID: 212276277}
   speed: 10
-  spawnTime: 1
 --- !u!4 &378589936
 Transform:
   m_ObjectHideFlags: 0
@@ -2194,78 +2263,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 107543060}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &552460859
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 552460860}
-  - component: {fileID: 552460862}
-  - component: {fileID: 552460861}
-  m_Layer: 5
-  m_Name: RawImage
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &552460860
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 552460859}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 135008345}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10000, y: 10000}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &552460861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 552460859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5019608}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 0}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
---- !u!222 &552460862
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 552460859}
-  m_CullTransparentMesh: 0
 --- !u!1001 &556877805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2476,7 +2473,6 @@ MonoBehaviour:
   point2: {fileID: 813316572}
   knife: {fileID: 958064196}
   speed: 10
-  spawnTime: 1
 --- !u!4 &593978647
 Transform:
   m_ObjectHideFlags: 0
@@ -3860,7 +3856,6 @@ MonoBehaviour:
   point2: {fileID: 987265668}
   knife: {fileID: 853725893}
   speed: 10
-  spawnTime: 1
 --- !u!4 &1116136228
 Transform:
   m_ObjectHideFlags: 0
@@ -4132,7 +4127,6 @@ MonoBehaviour:
   point2: {fileID: 1886446413}
   knife: {fileID: 754147390}
   speed: 10
-  spawnTime: 1
 --- !u!4 &1227016110
 Transform:
   m_ObjectHideFlags: 0
@@ -4183,7 +4177,6 @@ MonoBehaviour:
   point2: {fileID: 24233363}
   knife: {fileID: 1829919114}
   speed: 10
-  spawnTime: 1
 --- !u!4 &1250769106
 Transform:
   m_ObjectHideFlags: 0
@@ -5464,7 +5457,6 @@ MonoBehaviour:
   point2: {fileID: 3597112}
   knife: {fileID: 1446514197}
   speed: 10
-  spawnTime: 1
 --- !u!4 &1604421236
 Transform:
   m_ObjectHideFlags: 0
@@ -6001,7 +5993,6 @@ MonoBehaviour:
   point2: {fileID: 233534319}
   knife: {fileID: 574146480}
   speed: 10
-  spawnTime: 1
 --- !u!4 &1682763799
 Transform:
   m_ObjectHideFlags: 0
@@ -6091,7 +6082,6 @@ MonoBehaviour:
   point2: {fileID: 1466531675}
   knife: {fileID: 1028599118}
   speed: 10
-  spawnTime: 1
 --- !u!4 &1703367235
 Transform:
   m_ObjectHideFlags: 0
