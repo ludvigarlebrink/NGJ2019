@@ -37,7 +37,7 @@ public class EggArmy : MonoBehaviour
                     w = sideLength;
                     break;
                 }
-                GameObject eggGo = Instantiate(SpeederEggPrefab, new Vector3(w * Density, 0, l * Density), Quaternion.identity, transform);
+                GameObject eggGo = Instantiate(SpeederEggPrefab, new Vector3(w * Density, 0, l * Density), Quaternion.identity, transform, false);
                 Eggs.Add(eggGo.GetComponent<Egg>());
             }
         }
