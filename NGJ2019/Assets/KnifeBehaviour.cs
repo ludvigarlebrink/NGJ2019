@@ -12,8 +12,13 @@ public class KnifeBehaviour : MonoBehaviour
     bool change = true;
     bool start = false;
 
-    public float spawnTime = 1;
     private float curSpawnTime;
+
+    private void Start()
+    {
+        float rand = Random.Range(0.1f, 2.0f);
+        curSpawnTime = rand;
+    }
 
     // Update is called once per frame
     void Update()
@@ -38,7 +43,7 @@ public class KnifeBehaviour : MonoBehaviour
             curSpawnTime -= 1 * Time.deltaTime;
             if (curSpawnTime <= 0)
             {
-
+                start = true;
             }
         }
     }

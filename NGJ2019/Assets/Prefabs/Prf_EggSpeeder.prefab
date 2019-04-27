@@ -1067,6 +1067,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 2
+  destination: {fileID: 0}
+  standAlone: 0
 --- !u!136 &6979701942258161177
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1074,7 +1076,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7587379312685690806}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3961bf32a1994314e8910df6361e26f8, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.1
