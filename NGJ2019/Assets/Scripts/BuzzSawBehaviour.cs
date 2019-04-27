@@ -13,9 +13,11 @@ public class BuzzSawBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name.Contains("Egg"))
+        if (other.GetComponent<Egg>())
         {
-            Destroy(other.gameObject);
+            EggArmy army = FindObjectOfType<EggArmy>();
+            army.KillEgg(other.GetComponent<Egg>());
+            // Destroy(other.gameObject);
         }
     }
 }

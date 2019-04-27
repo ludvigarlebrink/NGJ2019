@@ -12,6 +12,7 @@ public class EggArmy : MonoBehaviour
     public List<Egg> Eggs;
     private int currentCount = 0;
     public float Density = 1;
+    private Formation activeFormation;
 
     public enum Formation
     {
@@ -25,7 +26,7 @@ public class EggArmy : MonoBehaviour
     void Start()
     {
         Eggs = new List<Egg>();
-        currentCount = 10;
+        currentCount = 36;
         int sideLength = Mathf.CeilToInt(Mathf.Sqrt(currentCount));
         for (int w = 0; w < sideLength; ++w)
         {
@@ -43,7 +44,7 @@ public class EggArmy : MonoBehaviour
             }
         }
 
-        LeaderEgg = Instantiate(LeaderEggPrefab, new Vector3((sideLength / 2.0f) * Density, 0, (sideLength / 2.0f) * Density), Quaternion.identity);
+        LeaderEgg = Instantiate(LeaderEggPrefab, transform.position + new Vector3((sideLength / 2.0f) * Density, 0, (sideLength / 2.0f) * Density), Quaternion.identity);
 
         for (int i = 0; i < currentCount; ++i)
         {
@@ -56,6 +57,7 @@ public class EggArmy : MonoBehaviour
 
     void ChangeFormation(Formation formation)
     {
+        activeFormation = formation;
         switch (formation)
         {
             case Formation.Block:
@@ -146,6 +148,15 @@ public class EggArmy : MonoBehaviour
                     e.GetComponent<Rigidbody>().AddForce(Vector3.up * JumpForce, ForceMode.Acceleration);
                 }
             }
+        }
+    }
+
+    public void KillEgg(Egg egg)
+    {
+        if (Eggs.Remove(egg))
+        {
+            Destroy(egg.gameObject);
+            ChangeFormation(activeFormation);
         }
     }
 }
