@@ -5,7 +5,6 @@ using UnityEngine;
 public class Egg : MonoBehaviour
 {
     public float Speed;
-    
     public Transform destination = null;
 
     private Animator animator;

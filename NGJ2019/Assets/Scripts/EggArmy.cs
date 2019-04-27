@@ -58,8 +58,8 @@ public class EggArmy : MonoBehaviour
             DestinationPoints.Add(go.transform);
         }
         isSnakeFormation = false;
-        ChangeFormation(Formation.Snake);
-        lastFormation = Formation.Snake;
+        ChangeFormation(Formation.Block);
+        lastFormation = Formation.Block;
     }
 
     public void AddEggie(Egg littleEggie)
@@ -150,13 +150,21 @@ public class EggArmy : MonoBehaviour
                     // init snake formation here
                     for (int i = 0; i < DestinationPoints.Count; ++i)
                     {
-                        DestinationPoints[i].localPosition = new Vector3(0, 0, i * Density);
+                        if (i != 0)
+                        {
+                            Eggs[i].transform.SetParent(Eggs[i - 1].transform);
+                            DestinationPoints[i].localPosition = new Vector3(0, 0, Density);
+                        }
+                        else
+                        {
+                            DestinationPoints[i].localPosition = new Vector3(0, 0, Density);
+                        }
                     }
                     for (int i = 0; i < currentCount; ++i)
                     {
                         Eggs[i].AssignDestinationTransform(DestinationPoints[i]);
                     }
-                    isSnakeFormation = true;
+                    //isSnakeFormation = true;
                 }
                 break;
         }
