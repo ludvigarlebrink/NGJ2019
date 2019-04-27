@@ -132,7 +132,27 @@ public class EggArmy : MonoBehaviour
                 }
                 for (int i = 0; i < currentCount; ++i)
                 {
-                    Eggs[i].AssignDestinationTransform(DestinationPoints[i]);
+                    Eggs[i].AssignDestinationTransform(null);
+                }
+                for (int i = 0; i < currentCount; ++i)
+                {
+                    int index = 0;
+                    for (int j = 0; j < currentCount; ++j)
+                    {
+                        if (Eggs[j].destination == null)
+                        {
+                            index = j;
+                            break;
+                        }
+                    }
+                    for (int j = index; j < currentCount; ++j)
+                    {
+                        if (Eggs[j].destination == null && (Eggs[j].transform.position - DestinationPoints[i].position).sqrMagnitude < (Eggs[index].transform.position - DestinationPoints[i].position).sqrMagnitude)
+                        {
+                            index = j;
+                        }
+                    }
+                    Eggs[index].AssignDestinationTransform(DestinationPoints[i]);
                 }
                 break;
 
@@ -156,12 +176,40 @@ public class EggArmy : MonoBehaviour
                         }
                     }
                 }
+                for (int i = 0; i < currentCount; ++i)
+                {
+                    Eggs[i].AssignDestinationTransform(null);
+                }
+                for (int i = 0; i < currentCount; ++i)
+                {
+                    int index = 0;
+                    for (int j = 0; j < currentCount; ++j)
+                    {
+                        if (Eggs[j].destination == null)
+                        {
+                            index = j;
+                            break;
+                        }
+                    }
+                    for (int j = index; j < currentCount; ++j)
+                    {
+                        if (Eggs[j].destination == null && (Eggs[j].transform.position - DestinationPoints[i].position).sqrMagnitude < (Eggs[index].transform.position - DestinationPoints[i].position).sqrMagnitude)
+                        {
+                            index = j;
+                        }
+                    }
+                    Eggs[index].AssignDestinationTransform(DestinationPoints[i]);
+                }
                 break;
 
             case Formation.Dense:
                 for (int i = 0; i < currentCount; ++i)
                 {
                     DestinationPoints[i].localPosition = Vector3.zero;
+                }
+                for (int i = 0; i < currentCount; ++i)
+                {
+                    Eggs[i].AssignDestinationTransform(DestinationPoints[i]);
                 }
                 break;
 
