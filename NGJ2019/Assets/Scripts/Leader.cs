@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Leader : MonoBehaviour
 {
-    public float Speed = 10.0f;
+    public float Speed = 200.0f;
 
     public float JumpRadius = 15.0f;
     public float JumpForce = 800.0f;
@@ -29,6 +29,9 @@ public class Leader : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.AddForce(new Vector3(Input.GetAxis("Horizontal"), 0.0f,  Input.GetAxis("Vertical")).normalized * Speed);
+        Vector3 vec = transform.forward * Input.GetAxis("Vertical");
+        vec += transform.right * Input.GetAxis("Horizontal");
+        vec = vec.normalized * Speed;
+        rb.AddForce(vec);
     }
 }
