@@ -33,7 +33,7 @@ public class EggArmy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        eggie = Instantiate(SpeederEggPrefab, new Vector3(10, 0, 10), Quaternion.identity, transform).GetComponent<Egg>();
+        eggie = Instantiate(SpeederEggPrefab, new Vector3(0, 0, 0), Quaternion.identity, transform).GetComponent<Egg>();
         eggie.standAlone = true;
         Eggs = new List<Egg>();
         currentCount = 36;
@@ -212,8 +212,11 @@ public class EggArmy : MonoBehaviour
                 break;
             }
         }
-        specialEgg.ActivateSpeciality();
-        specialEgg.AssignDestinationTransform(destinationTransform);
+        if (specialEgg)
+        {
+            specialEgg.ActivateSpeciality();
+            specialEgg.AssignDestinationTransform(destinationTransform);
+        }
     }
 
     void RemoveEggityEggFromLists(int index)
