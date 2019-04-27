@@ -9,14 +9,18 @@ public class SocketBehaviour : MonoBehaviour
     private int requiredNumber = 4;
     [SerializeField]
     private ElectricDoorBehaviour electricDoor;
+    [SerializeField]
+    private ParticleSystem particleOnCollision;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name.Contains("fast"))
         {
-            if (requiredNumber >0)
+            if (requiredNumber > 0)
             {
                 requiredNumber--;
+                Instantiate(particleOnCollision, transform.position, Quaternion.identity);
+                //particleOnCollision.Play();
                 Destroy(other.gameObject);
             }
 
@@ -24,17 +28,4 @@ public class SocketBehaviour : MonoBehaviour
                 electricDoor.OpenDoor();
         }
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            requiredNumber--;
-            if (requiredNumber <= 0)
-            {
-                electricDoor.OpenDoor();
-            }
-        }
-    }
-
 }
