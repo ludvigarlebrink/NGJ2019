@@ -700,10 +700,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   JumpForce: 200
-  SpeederEgg: {fileID: 7587379312685690806, guid: 0cfa0d0d75ddc0b40a51a8244fef74d3,
+  SpeederEggPrefab: {fileID: 7587379312685690806, guid: 0cfa0d0d75ddc0b40a51a8244fef74d3,
     type: 3}
-  LeaderEgg: {fileID: 5512020756333427668, guid: 484637dcdfe3b6645b44f70826954801,
+  LeaderEggPrefab: {fileID: 1584688816897696259, guid: 134c89e2a291f6a4ba5364b244165d2b,
     type: 3}
+  DestinationPoints: []
+  Eggs: []
   Density: 0.35
 --- !u!4 &1965647342
 Transform:
