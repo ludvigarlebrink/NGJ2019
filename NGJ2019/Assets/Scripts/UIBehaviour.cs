@@ -101,6 +101,34 @@ public class UIBehaviour : MonoBehaviour
         }
     }
 
+    public void EggLost(Egg.Type type)
+    {
+        if (type >= 0)
+        {
+            score[(int)type]--;
+            eggsTexts[(int)type].GetComponent<Animator>().SetTrigger("Active");
+
+            if (score[(int)type] > 1)
+            {
+                for (int i = 0; i < bubbles.Length; i++)
+                {
+                    if (i != (int)type)
+                    {
+                        bubbles[i].SetActive(true);
+
+                        if (bubblesTimeouts[i] != null)
+                        {
+                            StopCoroutine(bubblesTimeouts[i]);
+                        }
+
+                        bubblesTimeouts[i] = HideBubbleAfterDelay(bubbles[i]);
+                        StartCoroutine(bubblesTimeouts[i]);
+                    }
+                }
+            }
+        }
+    }
+
     IEnumerator HideBubbleAfterDelay(GameObject bubble)
     {
         yield return new WaitForSeconds(bubbleTimeout);

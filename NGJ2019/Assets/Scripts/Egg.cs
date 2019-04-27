@@ -69,6 +69,7 @@ public class Egg : MonoBehaviour
                     {
                         if (!animationTriggered)
                         {
+                            FindObjectOfType<UIBehaviour>().EggLost(Egg.Type.Green);
                             animator.SetTrigger(AnimationConstants.beTall);
                             animationTriggered = true;
                         }
