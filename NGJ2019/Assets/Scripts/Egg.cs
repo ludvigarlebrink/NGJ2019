@@ -11,6 +11,8 @@ public class Egg : MonoBehaviour
     private Animator animator;
     private Rigidbody rb;
 
+    public bool standAlone;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -43,6 +45,16 @@ public class Egg : MonoBehaviour
         {
             Vector3 force = (destination.position - transform.position).normalized * Speed;
             rb.AddForce(new Vector3(force.x, 0.0f, force.z), ForceMode.Force);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Egg collidedEgg = collision.gameObject.GetComponent<Egg>();
+        EggArmy army = FindObjectOfType<EggArmy>();
+        if (collidedEgg && army && collidedEgg.standAlone)
+        {
+            army.AddEggie(collidedEgg);
         }
     }
 }
