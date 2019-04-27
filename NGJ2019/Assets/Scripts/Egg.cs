@@ -11,6 +11,7 @@ public class Egg : MonoBehaviour
     private Rigidbody rb;
 
     public bool standAlone;
+    private bool specialityActivated = false;
 
     public Type type;
 
@@ -26,6 +27,11 @@ public class Egg : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+    }
+
+    public void ActivateSpeciality()
+    {
+        specialityActivated = true;
     }
 
     public void AssignDestinationTransform(Transform _destination)
@@ -44,6 +50,13 @@ public class Egg : MonoBehaviour
                 Quaternion rotation = Quaternion.LookRotation((destionationPos - transformPos).normalized, Vector3.up);
                 transform.rotation = Quaternion.Euler(0.0f, rotation.eulerAngles.y, 0.0f);
             }
+            else if (specialityActivated)
+            {
+                if (type == Type.Green)
+                {
+                    animator.SetTrigger(AnimationConstants.beTall);
+                }
+            }
         }
     }
 
@@ -61,9 +74,20 @@ public class Egg : MonoBehaviour
     {
         Egg collidedEgg = collision.gameObject.GetComponent<Egg>();
         EggArmy army = FindObjectOfType<EggArmy>();
-        if (collidedEgg && army && collidedEgg.standAlone)
+        if (collidedEgg && army)
         {
-            army.AddEggie(collidedEgg);
+            if (collidedEgg.standAlone)
+            {
+                army.AddEggie(collidedEgg);
+            }
+            else if (collidedEgg.specialityActivated)
+            {
+                if (collidedEgg.type == Type.Green && animator.GetCurrentAnimatorStateInfo(0).IsName("BeTall"))
+                {
+                    // TODO change the movement of the egg
+                }
+            }
         }
+
     }
 }
