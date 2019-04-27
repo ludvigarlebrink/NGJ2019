@@ -5,7 +5,7 @@ using UnityEngine;
 public class Egg : MonoBehaviour
 {
     public float Speed;
-
+    
     public Transform destination = null;
 
     private Animator animator;
@@ -26,7 +26,6 @@ public class Egg : MonoBehaviour
     {
         if (destination)
         {
-
             Vector3 transformPos = new Vector3(transform.position.x, 0.0f, transform.position.z);
             Vector3 destionationPos = new Vector3(destination.position.x, 0.0f, destination.position.z);
             if (Vector3.Distance(transformPos, destionationPos) > 0.01f)
