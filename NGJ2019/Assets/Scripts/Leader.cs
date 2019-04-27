@@ -32,18 +32,4 @@ public class Leader : MonoBehaviour
     {
         rb.AddForce(new Vector3(Input.GetAxis("Horizontal"), 0.0f,  Input.GetAxis("Vertical")).normalized * Speed * SpeedModifier);
     }
-
-    private void LateUpdate()
-    {
-        CameraFollow();
-    }
-
-    private void CameraFollow()
-    {
-        Vector3 desiredPosition = transform.position + cameraOffset;
-        Vector3 smoothedPosition = Vector3.Lerp(MainCamera.transform.position, desiredPosition, cameraSmoothSpeed * Time.deltaTime * 60);
-
-        MainCamera.transform.position = smoothedPosition;
-        MainCamera.transform.LookAt(transform);
-    }
 }
