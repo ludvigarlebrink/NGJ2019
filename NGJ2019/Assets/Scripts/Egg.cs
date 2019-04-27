@@ -27,6 +27,7 @@ public class Egg : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        rb.mass = Random.Range(0.15f, 0.25f);
     }
 
     public void ActivateSpeciality()

@@ -911,6 +911,7 @@ MonoBehaviour:
   Speed: 2
   destination: {fileID: 0}
   standAlone: 0
+  type: 3
 --- !u!1 &8306254410450720966
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,9 +20,9 @@ public class AbilityTrigger : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.O))
         {
-            if (inReach > 0)
+            if (inReach > 0 && army)
             {
-                
+                army.ActivateSpecialEgg(EggType, transform);
             }
         }
     }
