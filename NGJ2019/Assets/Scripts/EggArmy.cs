@@ -16,6 +16,10 @@ public class EggArmy : MonoBehaviour
     private Formation lastFormation;
     public Egg eggie;
     private bool isSnakeFormation;
+    private bool scaleX = false;
+    private bool scaleZ = false;
+    private bool unscaleX = false;
+    private bool unscaleZ = false;
 
     public enum Formation
     {
@@ -175,7 +179,39 @@ public class EggArmy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetButton("ScaleX") && !Input.GetButton("RevertScale"))
+        {
+            LeaderEgg.transform.localScale += new Vector3(10.0f * Time.deltaTime, 0, 0.0f);
+            if (LeaderEgg.transform.localScale.x > 5.0f)
+            {
+                LeaderEgg.transform.localScale = new Vector3(5.0f, LeaderEgg.transform.localScale.y, LeaderEgg.transform.localScale.z);
+            }
+        }
+        else if (Input.GetButton("ScaleX") && Input.GetButton("RevertScale"))
+        {
+            LeaderEgg.transform.localScale -= new Vector3(10.0f * Time.deltaTime, 0, 0.0f);
+            if (LeaderEgg.transform.localScale.x < 1.0f)
+            {
+                LeaderEgg.transform.localScale = new Vector3(1.0f, LeaderEgg.transform.localScale.y, LeaderEgg.transform.localScale.z);
+            }
+        }
+        else if (Input.GetButton("ScaleZ") && !Input.GetButton("RevertScale"))
+        {
+            LeaderEgg.transform.localScale += new Vector3(0, 0, 10.0f * Time.deltaTime);
+            if (LeaderEgg.transform.localScale.z > 5.0f)
+            {
+                LeaderEgg.transform.localScale = new Vector3(LeaderEgg.transform.localScale.x, LeaderEgg.transform.localScale.y, 5.0f);
+            }
+        }
+        else if (Input.GetButton("ScaleZ") && Input.GetButton("RevertScale"))
+        {
+            LeaderEgg.transform.localScale -= new Vector3(0.0f, 0, 10.0f * Time.deltaTime);
+            if (LeaderEgg.transform.localScale.z < 1.0f)
+            {
+                LeaderEgg.transform.localScale = new Vector3(LeaderEgg.transform.localScale.x, LeaderEgg.transform.localScale.y, 1.0f);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             ChangeFormation(Formation.Block);
             lastFormation = Formation.Block;
