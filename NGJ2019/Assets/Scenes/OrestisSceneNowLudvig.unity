@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 617d9be015db68348a623b01ea51a8c5, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -535,6 +535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   requiredNumber: 4
   electricDoor: {fileID: 46494618}
+  particleOnCollision: {fileID: 0}
 --- !u!136 &66993378
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1331,7 +1332,6 @@ MonoBehaviour:
   point2: {fileID: 944654477}
   knife: {fileID: 1977283766}
   speed: 10
-  spawnTime: 1
 --- !u!4 &442901047
 Transform:
   m_ObjectHideFlags: 0
@@ -1383,6 +1383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   requiredNumber: 4
   electricDoor: {fileID: 1764423885}
+  particleOnCollision: {fileID: 0}
 --- !u!136 &446109376
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1809,7 +1810,7 @@ GameObject:
   - component: {fileID: 523169890}
   - component: {fileID: 523169889}
   - component: {fileID: 523169888}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2120,7 +2121,6 @@ MonoBehaviour:
   point2: {fileID: 380505960}
   knife: {fileID: 306659409}
   speed: 10
-  spawnTime: 1
 --- !u!4 &585389455
 Transform:
   m_ObjectHideFlags: 0
@@ -2590,7 +2590,6 @@ MonoBehaviour:
   point2: {fileID: 66757534}
   knife: {fileID: 1354133873}
   speed: 10
-  spawnTime: 1
 --- !u!4 &774309483
 Transform:
   m_ObjectHideFlags: 0
@@ -2743,7 +2742,6 @@ MonoBehaviour:
   point2: {fileID: 972821099}
   knife: {fileID: 1452051865}
   speed: 10
-  spawnTime: 1
 --- !u!4 &842214329
 Transform:
   m_ObjectHideFlags: 0
@@ -3298,7 +3296,6 @@ MonoBehaviour:
   point2: {fileID: 1514905925}
   knife: {fileID: 53317415}
   speed: 10
-  spawnTime: 1
 --- !u!4 &1101586315
 Transform:
   m_ObjectHideFlags: 0
@@ -4196,7 +4193,6 @@ MonoBehaviour:
   point2: {fileID: 1281840032}
   knife: {fileID: 1283317000}
   speed: 10
-  spawnTime: 1
 --- !u!4 &1373604302
 Transform:
   m_ObjectHideFlags: 0
@@ -4498,7 +4494,6 @@ MonoBehaviour:
   point2: {fileID: 2073488376}
   knife: {fileID: 213503285}
   speed: 10
-  spawnTime: 1
 --- !u!4 &1395283183
 Transform:
   m_ObjectHideFlags: 0
@@ -5229,7 +5224,6 @@ MonoBehaviour:
   point2: {fileID: 2086521806}
   knife: {fileID: 1383739812}
   speed: 10
-  spawnTime: 1
 --- !u!4 &1560399644
 Transform:
   m_ObjectHideFlags: 0
@@ -5815,7 +5809,6 @@ MonoBehaviour:
   point2: {fileID: 721475046}
   knife: {fileID: 1341477385}
   speed: 10
-  spawnTime: 1
 --- !u!4 &1747111245
 Transform:
   m_ObjectHideFlags: 0
@@ -5866,7 +5859,6 @@ MonoBehaviour:
   point2: {fileID: 455295305}
   knife: {fileID: 757447842}
   speed: 10
-  spawnTime: 1
 --- !u!4 &1758921293
 Transform:
   m_ObjectHideFlags: 0
@@ -6513,7 +6505,6 @@ MonoBehaviour:
   point2: {fileID: 38496547}
   knife: {fileID: 571783592}
   speed: 10
-  spawnTime: 1
 --- !u!4 &1942521596
 Transform:
   m_ObjectHideFlags: 0
@@ -6724,7 +6715,6 @@ MonoBehaviour:
   point2: {fileID: 1303899009}
   knife: {fileID: 869157910}
   speed: 10
-  spawnTime: 1
 --- !u!4 &2001473219
 Transform:
   m_ObjectHideFlags: 0
