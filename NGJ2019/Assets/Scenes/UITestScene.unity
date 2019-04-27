@@ -214,60 +214,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44858834}
   m_CullTransparentMesh: 0
---- !u!1 &140727931
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 140727933}
-  - component: {fileID: 140727932}
-  m_Layer: 0
-  m_Name: EmptyObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &140727932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 140727931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50851c3a38c41d8409f3013c6fea034c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bubbleTimeout: 2
-  eggsTexts:
-  - {fileID: 167829506}
-  - {fileID: 163996893}
-  - {fileID: 248501727}
-  - {fileID: 208578432}
-  bubbles:
-  - {fileID: 1127343470}
-  - {fileID: 571695394}
-  - {fileID: 44858834}
-  - {fileID: 1997392071}
---- !u!4 &140727933
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 140727931}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.7907045, y: 2.6491992, z: -8.563049}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &163996891
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,6 +711,7 @@ GameObject:
   - component: {fileID: 438887894}
   - component: {fileID: 438887893}
   - component: {fileID: 438887892}
+  - component: {fileID: 438887896}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -855,6 +802,29 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &438887896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438887891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4bed7c24082e44993ec6fa72965c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bubbleTimeout: 2
+  eggsTexts:
+  - {fileID: 167829506}
+  - {fileID: 163996893}
+  - {fileID: 248501727}
+  - {fileID: 208578432}
+  bubbles:
+  - {fileID: 1127343470}
+  - {fileID: 571695394}
+  - {fileID: 44858834}
+  - {fileID: 1997392071}
 --- !u!1 &571695394
 GameObject:
   m_ObjectHideFlags: 0
