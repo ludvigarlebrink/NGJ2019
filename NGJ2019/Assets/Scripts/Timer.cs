@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    private const float timeInterval = 10.0f;
+    private const float timeInterval = 10000.0f;
     private float time;
     EggArmy eggArmy;
     // Start is called before the first frame update

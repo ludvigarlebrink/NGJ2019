@@ -9,10 +9,11 @@ public class Egg : MonoBehaviour
 
     private Animator animator;
     private Rigidbody rb;
-
+    private float animationDuration;
     public bool standAlone;
-    private bool specialityActivated = false;
-
+    public bool specialityActivated = false;
+    public bool animationTriggered = false;
+    public bool animationFinished = false;
     public Type type;
 
     public enum Type
@@ -46,16 +47,42 @@ public class Egg : MonoBehaviour
         {
             Vector3 transformPos = new Vector3(transform.position.x, 0.0f, transform.position.z);
             Vector3 destionationPos = new Vector3(destination.position.x, 0.0f, destination.position.z);
-            if (Vector3.Distance(transformPos, destionationPos) > 0.01f)
+            if (!specialityActivated)
             {
-                Quaternion rotation = Quaternion.LookRotation((destionationPos - transformPos).normalized, Vector3.up);
-                transform.rotation = Quaternion.Euler(0.0f, rotation.eulerAngles.y, 0.0f);
-            }
-            else if (specialityActivated)
-            {
-                if (type == Type.Green)
+                if (Vector3.Distance(transformPos, destionationPos) > 0.01f)
                 {
-                    animator.SetTrigger(AnimationConstants.beTall);
+                    Quaternion rotation = Quaternion.LookRotation((destionationPos - transformPos).normalized, Vector3.up);
+                    transform.rotation = Quaternion.Euler(0.0f, rotation.eulerAngles.y, 0.0f);
+                }
+            }
+            else
+            {
+                if (Vector3.Distance(transformPos, destionationPos) > 0.1f)
+                {
+                    Quaternion rotation = Quaternion.LookRotation((destionationPos - transformPos).normalized, Vector3.up);
+                    transform.rotation = Quaternion.Euler(0.0f, rotation.eulerAngles.y, 0.0f);
+                }
+                else
+                {
+                    transform.position = new Vector3(destination.position.x, 0.25f + destination.position.y, destination.position.z);
+                    if (type == Type.Green)
+                    {
+                        if (!animationTriggered)
+                        {
+                            animator.SetTrigger(AnimationConstants.beTall);
+                            animationTriggered = true;
+                        }
+                        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("BeTall"))
+                        {
+                            animationFinished = true;
+                            gameObject.layer = 0;
+                            GetComponent<CapsuleCollider>().isTrigger = true;
+                            GetComponent<CapsuleCollider>().radius = 1.0f;
+                            Destroy(rb);
+                            rb = null;
+                        }
+
+                    }
                 }
             }
         }
@@ -63,11 +90,14 @@ public class Egg : MonoBehaviour
 
     void FixedUpdate()
     {
-        animator.SetFloat("Speed", new Vector2(rb.velocity.x, rb.velocity.z).sqrMagnitude);
-        if (destination)
+        if (rb)
         {
-            Vector3 force = (destination.position - transform.position).normalized * Speed;
-            rb.AddForce(new Vector3(force.x, 0.0f, force.z), ForceMode.Force);
+            animator.SetFloat("Speed", new Vector2(rb.velocity.x, rb.velocity.z).sqrMagnitude);
+            if (destination)
+            {
+                Vector3 force = (destination.position - transform.position).normalized * Speed;
+                rb.AddForce(new Vector3(force.x, 0.0f, force.z), ForceMode.Force);
+            }
         }
     }
 
@@ -81,14 +111,29 @@ public class Egg : MonoBehaviour
             {
                 army.AddEggie(collidedEgg);
             }
-            else if (collidedEgg.specialityActivated)
-            {
-                if (collidedEgg.type == Type.Green && animator.GetCurrentAnimatorStateInfo(0).IsName("BeTall"))
-                {
-                    // TODO change the movement of the egg
-                }
-            }
         }
+    }
 
+    private void OnTriggerStay(Collider collision)
+    {
+        Egg collidedEgg = collision.gameObject.GetComponent<Egg>();
+        if (collidedEgg && collidedEgg.specialityActivated && collidedEgg.type == Type.Green && collidedEgg.animationFinished)
+        {
+            // TODO change the movement of the egg
+            float dist = Vector3.Distance(transform.position, collidedEgg.transform.position) / collidedEgg.GetComponent<CapsuleCollider>().radius;
+            if (dist < 1.0f)
+            {
+                dist = 1 - dist;
+                rb.AddForce(new Vector3(0.0f, Mathf.SmoothStep(0.0f, 50.0f, dist), 0.0f));
+            }
+            //EggArmy army = FindObjectOfType<EggArmy>();
+            //if (army)
+            //{
+            //    foreach (Egg egg in army.Eggs)
+            //    {
+            //        egg.rb.AddForce(new Vector3(0.0f, 10.0f, 0.0f));
+            //    }
+            //}
+        }
     }
 }

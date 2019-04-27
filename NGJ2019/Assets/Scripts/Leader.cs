@@ -34,4 +34,19 @@ public class Leader : MonoBehaviour
         vec = vec.normalized * Speed;
         rb.AddForce(vec, ForceMode.VelocityChange);
     }
+
+    private void OnTriggerStay(Collider collision)
+    {
+        Egg collidedEgg = collision.gameObject.GetComponent<Egg>();
+        if (collidedEgg && collidedEgg.specialityActivated && collidedEgg.type == Egg.Type.Green && collidedEgg.animationFinished)
+        {
+            // TODO change the movement of the egg
+            float dist = Vector3.Distance(transform.position, collidedEgg.transform.position) / collidedEgg.GetComponent<CapsuleCollider>().radius;
+            if (dist < 1.0f)
+            {
+                dist = 1 - dist;
+                rb.AddForce(new Vector3(0.0f, Mathf.SmoothStep(0.0f, 50.0f, dist), 0.0f));
+            }
+        }
+    }
 }
