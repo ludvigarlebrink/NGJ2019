@@ -19,6 +19,7 @@ public class DoorBreakBehaviour : MonoBehaviour
         if (egg && egg.type == Egg.Type.Black && egg.specialityActivated)
         {
             Destroy(egg.gameObject);
+            FindObjectOfType<UIBehaviour>().EggLost(Egg.Type.Black);
             DoorBreak();
         }
     }

@@ -17,10 +17,7 @@ public class EggArmy : MonoBehaviour
     private Formation lastFormation;
     public Egg eggie;
     private bool isSnakeFormation;
-    private bool scaleX = false;
-    private bool scaleZ = false;
-    private bool unscaleX = false;
-    private bool unscaleZ = false;
+    private float checkLostEggsDeadline;
 
     public enum Formation
     {
@@ -33,6 +30,7 @@ public class EggArmy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        checkLostEggsDeadline = 0.0f;
         eggie = Instantiate(SpeederEggPrefab, new Vector3(0, 0, 0), Quaternion.identity, transform).GetComponent<Egg>();
         eggie.standAlone = true;
         Eggs = new List<Egg>();
@@ -104,6 +102,19 @@ public class EggArmy : MonoBehaviour
         FindObjectOfType<UIBehaviour>().EggCollected(littleEggie.type);
     }
 
+    void CheckLostEggs()
+    {
+        for (int i = 0; i < Eggs.Capacity; ++i)
+        {
+            float distance = Vector3.Distance(Eggs[i].transform.position, LeaderEgg.transform.position);
+            if (distance > 7)
+            {
+                RemoveEggityEggFromLists(i);
+                Eggs[i].standAlone = true;
+            }
+        }
+    }
+
     void ChangeFormation(Formation formation)
     {
         activeFormation = formation;
@@ -132,7 +143,27 @@ public class EggArmy : MonoBehaviour
                 }
                 for (int i = 0; i < currentCount; ++i)
                 {
-                    Eggs[i].AssignDestinationTransform(DestinationPoints[i]);
+                    Eggs[i].AssignDestinationTransform(null);
+                }
+                for (int i = 0; i < currentCount; ++i)
+                {
+                    int index = 0;
+                    for (int j = 0; j < currentCount; ++j)
+                    {
+                        if (Eggs[j].destination == null)
+                        {
+                            index = j;
+                            break;
+                        }
+                    }
+                    for (int j = index; j < currentCount; ++j)
+                    {
+                        if (Eggs[j].destination == null && (Eggs[j].transform.position - DestinationPoints[i].position).sqrMagnitude < (Eggs[index].transform.position - DestinationPoints[i].position).sqrMagnitude)
+                        {
+                            index = j;
+                        }
+                    }
+                    Eggs[index].AssignDestinationTransform(DestinationPoints[i]);
                 }
                 break;
 
@@ -156,12 +187,40 @@ public class EggArmy : MonoBehaviour
                         }
                     }
                 }
+                for (int i = 0; i < currentCount; ++i)
+                {
+                    Eggs[i].AssignDestinationTransform(null);
+                }
+                for (int i = 0; i < currentCount; ++i)
+                {
+                    int index = 0;
+                    for (int j = 0; j < currentCount; ++j)
+                    {
+                        if (Eggs[j].destination == null)
+                        {
+                            index = j;
+                            break;
+                        }
+                    }
+                    for (int j = index; j < currentCount; ++j)
+                    {
+                        if (Eggs[j].destination == null && (Eggs[j].transform.position - DestinationPoints[i].position).sqrMagnitude < (Eggs[index].transform.position - DestinationPoints[i].position).sqrMagnitude)
+                        {
+                            index = j;
+                        }
+                    }
+                    Eggs[index].AssignDestinationTransform(DestinationPoints[i]);
+                }
                 break;
 
             case Formation.Dense:
                 for (int i = 0; i < currentCount; ++i)
                 {
                     DestinationPoints[i].localPosition = Vector3.zero;
+                }
+                for (int i = 0; i < currentCount; ++i)
+                {
+                    Eggs[i].AssignDestinationTransform(DestinationPoints[i]);
                 }
                 break;
 
@@ -283,6 +342,13 @@ public class EggArmy : MonoBehaviour
             ChangeFormation(Formation.Dense);
             lastFormation = Formation.Dense;
             isSnakeFormation = false;
+        }
+
+        checkLostEggsDeadline += Time.deltaTime;
+        if (checkLostEggsDeadline > 5.0f)
+        {
+            CheckLostEggs();
+            checkLostEggsDeadline = 0;
         }
     }
 

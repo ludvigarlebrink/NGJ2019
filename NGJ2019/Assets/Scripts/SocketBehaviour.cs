@@ -25,6 +25,7 @@ public class SocketBehaviour : MonoBehaviour
                 }
                 //particleOnCollision.Play();
                 Destroy(other.gameObject);
+                FindObjectOfType<UIBehaviour>().EggLost(Egg.Type.Blue);
             }
 
             if (requiredNumber <= 0)
