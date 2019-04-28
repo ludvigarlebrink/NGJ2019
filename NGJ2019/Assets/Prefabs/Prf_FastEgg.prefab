@@ -260,7 +260,8 @@ MonoBehaviour:
   specialityActivated: 0
   animationTriggered: 0
   animationFinished: 0
-  type: 1
+  type: 0
+  tankFlare: {fileID: 0}
 --- !u!54 &6578858891513662805
 Rigidbody:
   m_ObjectHideFlags: 0

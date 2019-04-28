@@ -1173,7 +1173,7 @@ MonoBehaviour:
   specialityActivated: 0
   animationTriggered: 0
   animationFinished: 0
-  type: 2
+  type: 1
   tankFlare: {fileID: 2279620313808643884}
 --- !u!1 &8925290498681322021
 GameObject:
