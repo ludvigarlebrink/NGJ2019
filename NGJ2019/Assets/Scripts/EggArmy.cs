@@ -104,13 +104,14 @@ public class EggArmy : MonoBehaviour
 
     void CheckLostEggs()
     {
-        for (int i = 0; i < Eggs.Capacity; ++i)
+        for (int i = 0; i < Eggs.Count; ++i)
         {
             float distance = Vector3.Distance(Eggs[i].transform.position, LeaderEgg.transform.position);
             if (distance > 7)
             {
-                RemoveEggityEggFromLists(i);
                 Eggs[i].standAlone = true;
+                Eggs[i].AssignDestinationTransform(null);
+                RemoveEggityEggFromLists(i);
             }
         }
     }
