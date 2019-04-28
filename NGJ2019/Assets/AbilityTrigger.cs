@@ -22,13 +22,12 @@ public class AbilityTrigger : MonoBehaviour
         {
             if (inReach > 0 && army)
             {
-                //Transform t = transform;
-                //if (EggType == Egg.Type.Black)
-                //{
-                //    t.position = new Vector3(t.position.x, t.position.y + 4.0f, t.position.z);
-                //}
                 army.ActivateSpecialEgg(EggType, transform);
                 --inReach;
+                if (EggType == Egg.Type.Black)
+                {
+                    Destroy(gameObject);    
+                }
             }
         }
     }
