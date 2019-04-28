@@ -18,7 +18,7 @@ public class AbilityTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) || Input.GetButtonDown("Special"))
         {
             if (inReach > 0 && army)
             {

@@ -38,6 +38,8 @@ public class CameraController : MonoBehaviour
         Arm.transform.position = target.transform.position;
         YRotator.Rotate(Vector3.up * Input.GetAxis("Mouse X") * YRotationSpeed);
         XRotator.Rotate(Vector3.right * Input.GetAxis("Mouse Y") * XRotationSpeed);
+        YRotator.Rotate(Vector3.up * Input.GetAxis("VCam") * YRotationSpeed);
+        XRotator.Rotate(Vector3.right * -Input.GetAxis("HCam") * XRotationSpeed);
         if (XRotator.localEulerAngles.x > 80.0f)
         {
             XRotator.localRotation = Quaternion.Euler(80.0f, 0.0f, 0.0f);
@@ -47,6 +49,7 @@ public class CameraController : MonoBehaviour
             XRotator.localRotation = Quaternion.Euler(10.0f, 0.0f, 0.0f);
         }
         target.transform.rotation = YRotator.rotation;
-        transform.localPosition += Vector3.forward * Input.GetAxis("Mouse ScrollWheel") * 250.0f * Time.deltaTime;
+        transform.localPosition += Vector3.forward * Input.GetAxis("Mouse ScrollWheel") * 25.0f * Time.deltaTime;
+        transform.localPosition = new Vector3(0.0f, 0.0f, Mathf.Clamp(transform.localPosition.z, -10.0f, -0.5f));
     }
 }

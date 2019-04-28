@@ -289,56 +289,45 @@ public class EggArmy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("ScaleX") && !Input.GetButton("RevertScale"))
+        LeaderEgg.transform.localScale += new Vector3(-10.0f * Time.deltaTime * Input.GetAxis("ScaleX"), 0, -10.0f * Time.deltaTime * Input.GetAxis("ScaleX"));
+        LeaderEgg.transform.localScale += new Vector3(10.0f * Time.deltaTime * Input.GetAxis("ScaleZ"), 0, 10.0f * Time.deltaTime * Input.GetAxis("ScaleZ"));
+
+        if (LeaderEgg.transform.localScale.x > 5.0f)
         {
-            LeaderEgg.transform.localScale += new Vector3(10.0f * Time.deltaTime, 0, 0.0f);
-            if (LeaderEgg.transform.localScale.x > 5.0f)
-            {
-                LeaderEgg.transform.localScale = new Vector3(5.0f, LeaderEgg.transform.localScale.y, LeaderEgg.transform.localScale.z);
-            }
+            LeaderEgg.transform.localScale = new Vector3(5.0f, LeaderEgg.transform.localScale.y, LeaderEgg.transform.localScale.z);
         }
-        else if (Input.GetButton("ScaleX") && Input.GetButton("RevertScale"))
+        else if (LeaderEgg.transform.localScale.x < 1.0f)
         {
-            LeaderEgg.transform.localScale -= new Vector3(10.0f * Time.deltaTime, 0, 0.0f);
-            if (LeaderEgg.transform.localScale.x < 1.0f)
-            {
-                LeaderEgg.transform.localScale = new Vector3(1.0f, LeaderEgg.transform.localScale.y, LeaderEgg.transform.localScale.z);
-            }
+            LeaderEgg.transform.localScale = new Vector3(1.0f, LeaderEgg.transform.localScale.y, LeaderEgg.transform.localScale.z);
         }
-        else if (Input.GetButton("ScaleZ") && !Input.GetButton("RevertScale"))
+
+        if (LeaderEgg.transform.localScale.z > 5.0f)
         {
-            LeaderEgg.transform.localScale += new Vector3(0, 0, 10.0f * Time.deltaTime);
-            if (LeaderEgg.transform.localScale.z > 5.0f)
-            {
-                LeaderEgg.transform.localScale = new Vector3(LeaderEgg.transform.localScale.x, LeaderEgg.transform.localScale.y, 5.0f);
-            }
+            LeaderEgg.transform.localScale = new Vector3(LeaderEgg.transform.localScale.x, LeaderEgg.transform.localScale.y, 5.0f);
         }
-        else if (Input.GetButton("ScaleZ") && Input.GetButton("RevertScale"))
+        else if (LeaderEgg.transform.localScale.z < 1.0f)
         {
-            LeaderEgg.transform.localScale -= new Vector3(0.0f, 0, 10.0f * Time.deltaTime);
-            if (LeaderEgg.transform.localScale.z < 1.0f)
-            {
-                LeaderEgg.transform.localScale = new Vector3(LeaderEgg.transform.localScale.x, LeaderEgg.transform.localScale.y, 1.0f);
-            }
+            LeaderEgg.transform.localScale = new Vector3(LeaderEgg.transform.localScale.x, LeaderEgg.transform.localScale.y, 1.0f);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha1))
+
+        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetAxis("DPadX") > 0.3f)
         {
             ChangeFormation(Formation.Block);
             lastFormation = Formation.Block;
             isSnakeFormation = false;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetAxis("DPadX") < -0.3f)
         {
             ChangeFormation(Formation.Triangle);
             lastFormation = Formation.Triangle;
             isSnakeFormation = false;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        else if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetAxis("DPadY") > 0.3f)
         {
             ChangeFormation(Formation.Snake);
             lastFormation = Formation.Snake;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        else if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetAxis("DPadY") < -0.3f)
         {
             ChangeFormation(Formation.Dense);
             lastFormation = Formation.Dense;
