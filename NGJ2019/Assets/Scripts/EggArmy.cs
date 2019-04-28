@@ -11,6 +11,7 @@ public class EggArmy : MonoBehaviour
     private GameObject LeaderEgg;
     public List<Transform> DestinationPoints;
     public List<Egg> Eggs;
+    public List<Egg> LostEggs;
     private int currentCount = 0;
     public float Density = 1;
     private Formation activeFormation;
@@ -99,6 +100,12 @@ public class EggArmy : MonoBehaviour
     {
         ++currentCount;
         littleEggie.standAlone = false;
+
+        // TODO uncomment this after we have working prototype
+        //if (LostEggs.Contains(littleEggie))
+        //{
+        //    LostEggs.Remove(littleEggie);
+        //}
         Eggs.Add(littleEggie);
 
         GameObject go = new GameObject("Destination" + (currentCount - 1));
@@ -118,13 +125,27 @@ public class EggArmy : MonoBehaviour
             float distance = Vector3.Distance(Eggs[i].transform.position, LeaderEgg.transform.position);
             if (distance > 7)
             {
-                Eggs[i].standAlone = true;
-                Eggs[i].AssignDestinationTransform(null);
-                if (Eggs[i].type != Egg.Type.Red)
+                if (currentCount == 0)
                 {
-                    FindObjectOfType<UIBehaviour>().EggLost(Eggs[i].type);
+                    // TODO take the lost eggs
+                    foreach (Egg lostEgg in LostEggs)
+                    {
+                        Eggs.Add(lostEgg);
+                    }
+                    LostEggs.Clear();
+                    Restart();
                 }
-                RemoveEggityEggFromLists(i);
+                else
+                {
+                    Eggs[i].standAlone = true;
+                    Eggs[i].AssignDestinationTransform(null);
+                    if (Eggs[i].type != Egg.Type.Red)
+                    {
+                        FindObjectOfType<UIBehaviour>().EggLost(Eggs[i].type);
+                    }
+                    LostEggs.Add(Eggs[i]);
+                    RemoveEggityEggFromLists(i);
+                }
             }
         }
     }
