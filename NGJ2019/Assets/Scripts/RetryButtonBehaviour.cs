@@ -7,6 +7,6 @@ public class RetryButtonBehaviour : MonoBehaviour
     public void OnButtonClicked()
     {
         Debug.Log("Retry Button Clicked!");
-        // TODO add retry logic here
+        Application.LoadLevel(Application.loadedLevel);
     }
 }

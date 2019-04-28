@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.PostProcessing;
 
 public class ThatAgainBehaviour : MonoBehaviour
 {
     public Text that;
     public Text again;
     public GameObject targetLight;
+
+    public PostProcessingBehaviour postPapa;
 
     public float stepDuration = 0.3f;
     public float maxLightIntensity = 1.5f;
@@ -16,6 +19,8 @@ public class ThatAgainBehaviour : MonoBehaviour
 
     private float currentLightIntensitySpeed = 0f;
     private Light lightComponent;
+
+    private bool activateCanvas = false;
 
     // Start is called before the first frame update
     void Start()
@@ -26,11 +31,17 @@ public class ThatAgainBehaviour : MonoBehaviour
         lightComponent = targetLight.GetComponent<Light>();
     }
 
+    public void ActivateCanvas()
+    {
+        activateCanvas = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.T))
+        if(activateCanvas)
         {
+            activateCanvas = false;
             StartCoroutine(ShowHideText(0));
         }
 

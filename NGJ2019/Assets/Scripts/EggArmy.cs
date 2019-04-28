@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class EggArmy : MonoBehaviour
 {
+
+    public CanvasGroup GOCanvas;
+    public GameObject camera;
+
     public GameObject DeathPrefab = null;
     public float JumpForce = 50.0f;
     public GameObject SpeederEggPrefab;
@@ -417,6 +421,13 @@ public class EggArmy : MonoBehaviour
             Destroy(death, 1.0f);
             Destroy(egg.gameObject);
             --currentCount;
+            if (currentCount <= 0)
+            {
+                camera.GetComponent<CameraController>().enabled = false;
+                camera.GetComponent<GameOverCameraBehaviour>().enabled = true;
+                GOCanvas.blocksRaycasts = true;
+                GOCanvas.alpha = 1.0f;
+            }
             ChangeFormation(activeFormation);
         }
     }

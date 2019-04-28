@@ -101,14 +101,14 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 1.94
-        threshold: 1.1
-        softKnee: 0.48
-        radius: 3.3
+        intensity: 0.12
+        threshold: 1.9
+        softKnee: 0.166
+        radius: 1.36
         antiFlicker: 0
       lensDirt:
         texture: {fileID: 0}
-        intensity: 2.74
+        intensity: 1.04
   colorGrading:
     m_Enabled: 1
     m_Settings:
@@ -121,27 +121,27 @@ MonoBehaviour:
         neutralWhiteLevel: 5.3
         neutralWhiteClip: 10
       basic:
-        postExposure: 0.18
+        postExposure: 0.4
         temperature: 10
         tint: 0
         hueShift: -12
-        saturation: 1.71
+        saturation: 1.21
         contrast: 1
       channelMixer:
-        red: {x: 1.07, y: -0.03, z: 0}
-        green: {x: 0, y: 1, z: 0}
+        red: {x: 1.26, y: -0.03, z: 0}
+        green: {x: 0, y: 0.81, z: 0}
         blue: {x: 0, y: 0, z: 1}
-        currentEditingChannel: 0
+        currentEditingChannel: 1
       colorWheels:
-        mode: 1
+        mode: 0
         log:
-          slope: {r: 0.9202932, g: 1, b: 0.989496, a: 0}
-          power: {r: 1, g: 1, b: 1, a: 0}
+          slope: {r: 0.82381904, g: 1, b: 0.75413436, a: 0}
+          power: {r: 1, g: 0.99609, b: 0.9843627, a: 0}
           offset: {r: 1, g: 1, b: 1, a: 0}
         linear:
-          lift: {r: 0, g: 0, b: 0, a: 0}
-          gamma: {r: 0, g: 0, b: 0, a: 0}
-          gain: {r: 0, g: 0, b: 0, a: 0}
+          lift: {r: 0.95757574, g: 1, b: 0.9363754, a: 0}
+          gamma: {r: 1, g: 1, b: 1, a: 0}
+          gain: {r: 1, g: 1, b: 1, a: 0}
       curves:
         master:
           curve:
@@ -157,10 +157,10 @@ MonoBehaviour:
               inWeight: 0
               outWeight: 0
             - serializedVersion: 3
-              time: 0.27477476
-              value: 0.71881163
-              inSlope: 1.7835374
-              outSlope: 1.7835374
+              time: 0.35854343
+              value: 0.6369048
+              inSlope: 1.5178576
+              outSlope: 1.5178576
               tangentMode: 0
               weightedMode: 0
               inWeight: 0
@@ -318,12 +318,12 @@ MonoBehaviour:
     m_Enabled: 0
     m_Settings:
       spectralTexture: {fileID: 0}
-      intensity: 0.36
+      intensity: 0.42
   grain:
     m_Enabled: 0
     m_Settings:
       colored: 1
-      intensity: 0.2
+      intensity: 0.295
       size: 0.3
       luminanceContribution: 0.24
   vignette:

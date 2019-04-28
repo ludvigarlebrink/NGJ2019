@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
+    public ThatAgainBehaviour thatAgain;
+
     private float time;
     EggArmy eggArmy;
     // Start is called before the first frame update
@@ -21,6 +23,7 @@ public class Timer : MonoBehaviour
         if (time <= 0)
         {
             eggArmy.Restart();
+            thatAgain.ActivateCanvas();
             time = 40.0f;
         }
     }
