@@ -132,6 +132,8 @@ public class EggArmy : MonoBehaviour
     void ChangeFormation(Formation formation)
     {
         activeFormation = formation;
+        int removed = Eggs.RemoveAll(item => item == null);
+        currentCount -= removed;
         switch (formation)
         {
             case Formation.Block:
@@ -371,7 +373,7 @@ public class EggArmy : MonoBehaviour
                     }
                 }
             }
-            
+
         }
 
         RaycastHit leaderHit;
@@ -388,16 +390,13 @@ public class EggArmy : MonoBehaviour
 
     public void KillEgg(Egg egg)
     {
-        if (egg)
+        if (Eggs.Remove(egg))
         {
-            if (Eggs.Remove(egg))
-            {
-                GameObject death = Instantiate(DeathPrefab, egg.transform.position, Quaternion.identity);
-                Destroy(death, 1.0f);
-                Destroy(egg.gameObject);
-                --currentCount;
-                ChangeFormation(activeFormation);
-            }
+            GameObject death = Instantiate(DeathPrefab, egg.transform.position, Quaternion.identity);
+            Destroy(death, 1.0f);
+            Destroy(egg.gameObject);
+            --currentCount;
+            ChangeFormation(activeFormation);
         }
     }
 }
