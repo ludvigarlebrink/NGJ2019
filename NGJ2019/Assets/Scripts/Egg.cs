@@ -16,6 +16,9 @@ public class Egg : MonoBehaviour
     public bool animationFinished = false;
     public Type type;
 
+    [SerializeField]
+    private ParticleSystem tankFlare;
+
     public enum Type
     {
         Red = 0,
@@ -59,6 +62,15 @@ public class Egg : MonoBehaviour
             {
                 if (Vector3.Distance(transformPos, destionationPos) > 0.1f)
                 {
+                    if (type == Type.Black)
+                    {
+                        animator.SetTrigger(AnimationConstants.doCharge);
+                        if (tankFlare != null)
+                        {
+                            //tankFlare.gameObject.SetActive(true);
+                            tankFlare.Play();
+                        }
+                    }
                     Quaternion rotation = Quaternion.LookRotation((destionationPos - transformPos).normalized, Vector3.up);
                     transform.rotation = Quaternion.Euler(0.0f, rotation.eulerAngles.y, 0.0f);
                 }
@@ -124,7 +136,7 @@ public class Egg : MonoBehaviour
             if (dist < 1.0f)
             {
                 dist = 1 - dist;
-                rb.AddForce(new Vector3(0.0f, Mathf.SmoothStep(0.0f, 50.0f, dist), 0.0f));
+                rb.AddForce(new Vector3(0.0f, Mathf.SmoothStep(0.0f, 20000.0f, dist), 0.0f));
             }
             //EggArmy army = FindObjectOfType<EggArmy>();
             //if (army)

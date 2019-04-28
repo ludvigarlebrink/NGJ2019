@@ -9,7 +9,7 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        time = 1000.0f;
+        time = 40.0f;
         eggArmy = FindObjectOfType<EggArmy>();
     }
 
@@ -21,7 +21,7 @@ public class Timer : MonoBehaviour
         if (time <= 0)
         {
             eggArmy.Restart();
-            time = 1000.0f;
+            time = 40.0f;
         }
     }
 

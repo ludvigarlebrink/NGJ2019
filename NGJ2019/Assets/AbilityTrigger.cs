@@ -28,6 +28,7 @@ public class AbilityTrigger : MonoBehaviour
                 //    t.position = new Vector3(t.position.x, t.position.y + 4.0f, t.position.z);
                 //}
                 army.ActivateSpecialEgg(EggType, transform);
+                --inReach;
             }
         }
     }

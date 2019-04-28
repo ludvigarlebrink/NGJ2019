@@ -31,29 +31,33 @@ public class EggArmy : MonoBehaviour
     void Start()
     {
         checkLostEggsDeadline = 0.0f;
-        eggie = Instantiate(SpeederEggPrefab, new Vector3(0, 0, 0), Quaternion.identity, transform).GetComponent<Egg>();
-        eggie.standAlone = true;
+        //eggie = Instantiate(SpeederEggPrefab, new Vector3(0, 0, 0), Quaternion.identity, transform).GetComponent<Egg>();
+        //eggie.standAlone = true;
         Eggs = new List<Egg>();
-        currentCount = 36;
-        int sideLength = Mathf.CeilToInt(Mathf.Sqrt(currentCount));
-        for (int w = 0; w < sideLength; ++w)
-        {
-            for (int l = 0; l < sideLength; ++l)
-            {
-                int index = w * sideLength + l;
-                if (index >= currentCount)
-                {
-                    w = sideLength;
-                    break;
-                }
-                GameObject eggGo = Instantiate(SpeederEggPrefab, transform);
-                eggGo.transform.localPosition = new Vector3(w * Density, 0, l * Density);
-                eggGo.GetComponent<Egg>().standAlone = false;
-                Eggs.Add(eggGo.GetComponent<Egg>());
-            }
-        }
-
-        LeaderEgg = Instantiate(LeaderEggPrefab, transform.position + new Vector3((sideLength / 2.0f) * Density, 0, (sideLength / 2.0f) * Density), Quaternion.identity);
+        currentCount = 1;
+        //int sideLength = Mathf.CeilToInt(Mathf.Sqrt(currentCount));
+        //for (int w = 0; w < sideLength; ++w)
+        //{
+        //    for (int l = 0; l < sideLength; ++l)
+        //    {
+        //        int index = w * sideLength + l;
+        //        if (index >= currentCount)
+        //        {
+        //            w = sideLength;
+        //            break;
+        //        }
+        //        GameObject eggGo = Instantiate(SpeederEggPrefab, transform);
+        //        eggGo.transform.localPosition = new Vector3(w * Density, 0, l * Density);
+        //        eggGo.GetComponent<Egg>().standAlone = false;
+        //        Eggs.Add(eggGo.GetComponent<Egg>());
+        //    }
+        //}
+        GameObject eggGo = Instantiate(SpeederEggPrefab, transform);
+        eggGo.transform.localPosition = new Vector3(0, 0, 0);
+        eggGo.GetComponent<Egg>().standAlone = false;
+        Eggs.Add(eggGo.GetComponent<Egg>());
+        //LeaderEgg = Instantiate(LeaderEggPrefab, transform.position + new Vector3((sideLength / 2.0f) * Density, 0, (sideLength / 2.0f) * Density), Quaternion.identity);
+        LeaderEgg = Instantiate(LeaderEggPrefab, transform.position, Quaternion.identity);
 
         for (int i = 0; i < currentCount; ++i)
         {
@@ -79,6 +83,10 @@ public class EggArmy : MonoBehaviour
                     w = sideLength;
                     break;
                 }
+                if (!Eggs[index])
+                {
+                    Eggs[index].transform.localPosition = new Vector3(w * Density, 0, l * Density);
+                }
                 Eggs[index].transform.localPosition = new Vector3(w * Density, 0, l * Density);
                 Eggs[index].gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
             }
@@ -99,6 +107,9 @@ public class EggArmy : MonoBehaviour
         go.transform.SetParent(LeaderEgg.transform);
         DestinationPoints.Add(go.transform);
         ChangeFormation(lastFormation);
+
+        //littleEggie.type = Egg.Type.Green;
+
         FindObjectOfType<UIBehaviour>().EggCollected(littleEggie.type);
     }
 
@@ -357,15 +368,19 @@ public class EggArmy : MonoBehaviour
     {
         foreach (Egg e in Eggs)
         {
-            RaycastHit hit;
-            LayerMask mask = LayerMask.GetMask("Ground");
-            if (Physics.Raycast(e.transform.position, Vector3.down, out hit, 0.4f, mask))
+            if (e)
             {
-                if (Input.GetButtonDown("Jump"))
+                RaycastHit hit;
+                LayerMask mask = LayerMask.GetMask("Ground");
+                if (Physics.Raycast(e.transform.position, Vector3.down, out hit, 0.4f, mask))
                 {
-                    e.GetComponent<Rigidbody>().AddForce(Vector3.up * JumpForce, ForceMode.Acceleration);
+                    if (Input.GetButtonDown("Jump"))
+                    {
+                        e.GetComponent<Rigidbody>().AddForce(Vector3.up * JumpForce, ForceMode.Acceleration);
+                    }
                 }
             }
+            
         }
 
         RaycastHit leaderHit;

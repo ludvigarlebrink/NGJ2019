@@ -256,7 +256,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 2
   destination: {fileID: 0}
-  standAlone: 0
+  standAlone: 1
+  specialityActivated: 0
+  animationTriggered: 0
+  animationFinished: 0
+  type: 1
 --- !u!54 &6578858891513662805
 Rigidbody:
   m_ObjectHideFlags: 0

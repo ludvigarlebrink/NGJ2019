@@ -18,8 +18,12 @@ public class DoorBreakBehaviour : MonoBehaviour
         Egg egg = collision.gameObject.GetComponent<Egg>();
         if (egg && egg.type == Egg.Type.Black && egg.specialityActivated)
         {
-            Destroy(egg.gameObject);
-            FindObjectOfType<UIBehaviour>().EggLost(Egg.Type.Black);
+            if (egg.GetComponent<Egg>())
+            {
+                FindObjectOfType<UIBehaviour>().EggLost(Egg.Type.Black);
+                EggArmy army = FindObjectOfType<EggArmy>();
+                army.KillEgg(egg.GetComponent<Egg>());
+            }
             DoorBreak();
         }
     }

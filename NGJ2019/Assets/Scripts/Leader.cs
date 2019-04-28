@@ -45,7 +45,7 @@ public class Leader : MonoBehaviour
             if (dist < 1.0f)
             {
                 dist = 1 - dist;
-                rb.AddForce(new Vector3(0.0f, Mathf.SmoothStep(0.0f, 50.0f, dist), 0.0f));
+                rb.AddForce(new Vector3(0.0f, Mathf.SmoothStep(0.0f, 20000.0f, dist), 0.0f));
             }
         }
     }

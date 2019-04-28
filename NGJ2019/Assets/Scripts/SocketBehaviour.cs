@@ -14,7 +14,7 @@ public class SocketBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name.Contains("fast"))
+        if (other.gameObject.name.Contains("Fast"))
         {
             if (requiredNumber > 0)
             {
@@ -24,8 +24,13 @@ public class SocketBehaviour : MonoBehaviour
                     Instantiate(particleOnCollision, transform.position, Quaternion.identity);
                 }
                 //particleOnCollision.Play();
-                Destroy(other.gameObject);
-                FindObjectOfType<UIBehaviour>().EggLost(Egg.Type.Blue);
+                
+                if (other.GetComponent<Egg>())
+                {
+                    FindObjectOfType<UIBehaviour>().EggLost(Egg.Type.Blue);
+                    EggArmy army = FindObjectOfType<EggArmy>();
+                    army.KillEgg(other.GetComponent<Egg>());
+                }
             }
 
             if (requiredNumber <= 0)
