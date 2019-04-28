@@ -343,12 +343,12 @@ public class EggArmy : MonoBehaviour
             isSnakeFormation = false;
         }
 
-        checkLostEggsDeadline += Time.deltaTime;
-        if (checkLostEggsDeadline > 5.0f)
-        {
-            CheckLostEggs();
-            checkLostEggsDeadline = 0;
-        }
+        //checkLostEggsDeadline += Time.deltaTime;
+        //if (checkLostEggsDeadline > 5.0f)
+        //{
+        //    CheckLostEggs();
+        //    checkLostEggsDeadline = 0;
+        //}
     }
 
     private void FixedUpdate()
