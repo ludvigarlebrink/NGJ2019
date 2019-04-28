@@ -1081,7 +1081,7 @@ GameObject:
   - component: {fileID: -1706460414412933257}
   - component: {fileID: 9041972896876414993}
   m_Layer: 0
-  m_Name: tankEgg
+  m_Name: Prf_TankEgg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1116,7 +1116,7 @@ Animator:
   m_GameObject: {fileID: 8483132444037541978}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 88433b15d1773bc438e9fe6ec93ab80f, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4848535e631d4904c8d2ceed92f2bbf4, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1169,11 +1169,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 2
   destination: {fileID: 0}
-  standAlone: 0
+  standAlone: 1
   specialityActivated: 0
   animationTriggered: 0
   animationFinished: 0
-  type: 0
+  type: 2
+  tankFlare: {fileID: 2279620313808643884}
 --- !u!1 &8925290498681322021
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,6 +1339,11 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114960206652300638, guid: 9e4577abe56a95f4a91d29a0473cd30c,
+        type: 3}
+      propertyPath: OnlyDeactivate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 198568851183111830, guid: 9e4577abe56a95f4a91d29a0473cd30c,
         type: 3}
       propertyPath: playOnAwake
@@ -1350,6 +1356,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e4577abe56a95f4a91d29a0473cd30c, type: 3}
+--- !u!198 &2279620313808643884 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198159274938206214, guid: 9e4577abe56a95f4a91d29a0473cd30c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2117490445929951018}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2120362237775606826 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4464497929771776, guid: 9e4577abe56a95f4a91d29a0473cd30c,
