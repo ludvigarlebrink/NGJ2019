@@ -72,6 +72,8 @@ public class EggArmy : MonoBehaviour
 
     public void Restart()
     {
+        int removed = Eggs.RemoveAll(item => item == null);
+        currentCount -= removed;
         int sideLength = Mathf.CeilToInt(Mathf.Sqrt(currentCount));
         for (int w = 0; w < sideLength; ++w)
         {
@@ -82,10 +84,6 @@ public class EggArmy : MonoBehaviour
                 {
                     w = sideLength;
                     break;
-                }
-                if (!Eggs[index])
-                {
-                    Eggs[index].transform.localPosition = new Vector3(w * Density, 0, l * Density);
                 }
                 Eggs[index].transform.localPosition = new Vector3(w * Density, 0, l * Density);
                 Eggs[index].gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
