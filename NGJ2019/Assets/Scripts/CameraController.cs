@@ -47,5 +47,6 @@ public class CameraController : MonoBehaviour
             XRotator.localRotation = Quaternion.Euler(10.0f, 0.0f, 0.0f);
         }
         target.transform.rotation = YRotator.rotation;
+        transform.localPosition += Vector3.forward * Input.GetAxis("Mouse ScrollWheel") * 250.0f * Time.deltaTime;
     }
 }
