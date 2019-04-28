@@ -120,6 +120,10 @@ public class EggArmy : MonoBehaviour
             {
                 Eggs[i].standAlone = true;
                 Eggs[i].AssignDestinationTransform(null);
+                if (Eggs[i].type != Egg.Type.Red)
+                {
+                    FindObjectOfType<UIBehaviour>().EggLost(Eggs[i].type);
+                }
                 RemoveEggityEggFromLists(i);
             }
         }

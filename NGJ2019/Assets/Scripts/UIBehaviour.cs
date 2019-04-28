@@ -103,7 +103,7 @@ public class UIBehaviour : MonoBehaviour
 
     public void EggLost(Egg.Type type)
     {
-        if (type >= 0)
+        if ((int)type >= 0)
         {
             score[(int)type]--;
             eggsTexts[(int)type].GetComponent<Animator>().SetTrigger("Active");

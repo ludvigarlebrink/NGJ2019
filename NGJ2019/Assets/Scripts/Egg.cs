@@ -21,10 +21,10 @@ public class Egg : MonoBehaviour
 
     public enum Type
     {
-        Red = 0,
-        Blue = 1,
-        Black = 2,
-        Green = 3
+        Blue = 0,
+        Black = 1,
+        Green = 2,
+        Red = 3
     }
 
     void Start()
