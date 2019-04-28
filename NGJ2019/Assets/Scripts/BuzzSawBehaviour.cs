@@ -16,6 +16,7 @@ public class BuzzSawBehaviour : MonoBehaviour
         if (other.GetComponent<Egg>())
         {
             EggArmy army = FindObjectOfType<EggArmy>();
+            FindObjectOfType<UIBehaviour>().EggLost(other.GetComponent<Egg>().type);
             army.KillEgg(other.GetComponent<Egg>());
         }
     }

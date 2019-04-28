@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/OrestisScene.unity
+    guid: 009a1093fe203e947a7666db047c5790
   m_configObjects: {}

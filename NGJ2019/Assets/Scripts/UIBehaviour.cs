@@ -62,6 +62,7 @@ public class UIBehaviour : MonoBehaviour
             {
                 score[i] = 99;
             }
+            score[i] = Mathf.Max(0, score[i]); 
 
             eggsTexts[i].text = score[i].ToString();
         }

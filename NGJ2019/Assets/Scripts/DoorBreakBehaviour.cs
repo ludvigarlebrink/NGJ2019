@@ -35,7 +35,8 @@ public class DoorBreakBehaviour : MonoBehaviour
 
     IEnumerator DestroyAfterTimeout()
     {
-        yield return new WaitForSeconds(1);
+        //gameObject.GetComponent<MeshRenderer>().enabled = false;
+        yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }
 }
