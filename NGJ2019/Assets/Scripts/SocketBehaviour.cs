@@ -30,6 +30,7 @@ public class SocketBehaviour : MonoBehaviour
                     FindObjectOfType<UIBehaviour>().EggLost(Egg.Type.Blue);
                     EggArmy army = FindObjectOfType<EggArmy>();
                     army.KillEgg(other.GetComponent<Egg>());
+                    GetComponent<AudioSource>().Play();
                 }
             }
 

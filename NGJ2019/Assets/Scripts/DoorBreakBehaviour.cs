@@ -10,7 +10,8 @@ public class DoorBreakBehaviour : MonoBehaviour
     public void DoorBreak()
     {
         Instantiate(doorPieces, transform.position, transform.rotation);
-        Destroy(gameObject);
+        GetComponent<AudioSource>().Play();
+        StartCoroutine(DestroyAfterTimeout());       
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -30,5 +31,11 @@ public class DoorBreakBehaviour : MonoBehaviour
 
     private void Update()
     {
+    }
+
+    IEnumerator DestroyAfterTimeout()
+    {
+        yield return new WaitForSeconds(1);
+        Destroy(gameObject);
     }
 }

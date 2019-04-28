@@ -18,6 +18,7 @@ public class Egg : MonoBehaviour
 
     [SerializeField]
     private ParticleSystem tankFlare;
+    private bool soundPlayed = false;
 
     public enum Type
     {
@@ -77,6 +78,13 @@ public class Egg : MonoBehaviour
                 else
                 {
                     transform.position = new Vector3(destination.position.x, 0.25f + destination.position.y, destination.position.z);
+                    
+                    if(type != Type.Black && !GetComponent<AudioSource>().isPlaying && !soundPlayed)
+                    {
+                        GetComponent<AudioSource>().Play();
+                        soundPlayed = true;
+                    }
+
                     if (type == Type.Green)
                     {
                         if (!animationTriggered)
