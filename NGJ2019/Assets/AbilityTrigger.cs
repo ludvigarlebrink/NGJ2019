@@ -8,6 +8,7 @@ public class AbilityTrigger : MonoBehaviour
 
     private EggArmy army;
     private int inReach = 0;
+    private bool usable = true;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,7 @@ public class AbilityTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.O) || Input.GetButtonDown("Special"))
+        if (usable && Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.O) || Input.GetButtonDown("Special"))
         {
             if (inReach > 0 && army)
             {
@@ -26,7 +27,7 @@ public class AbilityTrigger : MonoBehaviour
                 --inReach;
                 if (EggType == Egg.Type.Black)
                 {
-                    Destroy(gameObject);    
+                    usable = false;   
                 }
             }
         }
